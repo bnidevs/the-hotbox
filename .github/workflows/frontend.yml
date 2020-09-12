@@ -1,0 +1,20 @@
+name: HTML
+
+on:
+  push:
+    branches: [master, frontend]
+  pull_request:
+    branches: [master, frontend]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Check HTML
+      uses: chabad360/htmlproofer@master
+      with:
+        directory: "./frontend/"
+        arguments: --empty-alt-ignore
