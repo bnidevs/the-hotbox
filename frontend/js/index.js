@@ -17,6 +17,12 @@ var s3 = new AWS.S3({
   params: { Bucket: bucketName }
 });
 
+function uuidv4() {
+  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+  );
+}
+
 function uploadVideo() {
   var files = document.getElementById("upload").files;
   if (!files.length) {
@@ -33,7 +39,7 @@ function uploadVideo() {
   }
 
   var file = files[0];
-  var fileName = file.name;
+  var fileName = uuidv4() + file.name;
 
   document.getElementById("progress-container").style.display = "flex";
 
