@@ -7,6 +7,17 @@ def lambda_handler(event, context):
     
     bucket = s3.Bucket('thehotbox.xyz')
     
+    rems = set(o.key for o in bucket.objects.all())
+    objs = set(o.key for o in bucket.objects.filter(Prefix="frontend/"))
+    
+    artifacts = bucket.objects.filter(Prefix="SourceArti")
+    for a in artifacts:
+        objs.add(a.key)
+    
+    for s in rems:
+        if s not in objs:
+            s3.Object('thehotbox.xyz', s).delete()
+    
     objs = bucket.objects.filter(Prefix="frontend/")
     
     for o in objs:
