@@ -5,6 +5,10 @@ var IdentityPoolId = 'us-east-1:2271f583-09e5-4212-b72a-4024f2cea3c5';
 let progbar = document.getElementById("progbar");
 let prognum = document.getElementById("progress");
 
+var shorten_float = (f) => {
+  return f.toFixed(2);
+}
+
 AWS.config.update({
   region: bucketRegion,
   credentials: new AWS.CognitoIdentityCredentials({
