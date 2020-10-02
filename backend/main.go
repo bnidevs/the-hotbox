@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 	"os"
+	"math"
 	"gocv.io/x/gocv"
 )
 
@@ -104,6 +105,43 @@ func ModifyBrightness3(frame *gocv.Mat, change int16) {
 	}
 }
 
+const MAXIMUM_BRIGHTNESS = 3
+func ModifyContrast(frame *gocv.Mat, alpha float64) {
+	framedata := frame.DataPtrUint8()
+	
+	// precomputes all brightness for this value for alpha
+	var precomputed_brightness [256]float64
+	for i := 0; i < 256; i++ {
+		precomputed_brightness[i] = 255*(1 - 1/(1 + math.Pow(255.0/float64(i) - 1, -MAXIMUM_BRIGHTNESS*alpha - 1)))
+	}
+
+	// nice closure that returns the number and color that is the max of the three
+	max := func(b, g, r uint8) uint8 {
+		if b > g && g > r {
+			return b
+		} else if g > r {
+			return g
+		} else {
+			return r
+		}
+	}
+
+	// goes through every pixel and does the following:
+	/*		calculates the highest brightness of any color channel in the pixel
+	 *		
+	 * 		finds the value that the brightness maps to, find out by how much it's scaled
+	 * 		scales every channel accordingly
+	 */
+	for i := 0; i < len(framedata); i += 3 {
+		value := max(framedata[i], framedata[i+1], framedata[i+2])
+
+		var factor float64 = precomputed_brightness[value] / float64(value)
+		for j := 0; j < 3; j++ {
+			framedata[i+j] = uint8(factor * float64(framedata[i+j]))
+		}
+	}
+}
+
 func main() {
 	if len(os.Args) != 2 {
 		fmt.Println("arg err") // check number of cli arguments
@@ -157,11 +195,7 @@ func main() {
 			continue
 		}
 		
-		// function call;
-		// takes in a Mat*, a change value, and a boolean that asks if you're increasing or decreasing
-		// changes the frame pointed to by the Mat*
-		//ModifyBrightness(&curr, 50, false) // this reduces curr's brightness by 50
-		ModifyBrightness3(&curr, -50)
+		ModifyContrast(&curr, .5)
 		out.Write(curr)
 
 	}
