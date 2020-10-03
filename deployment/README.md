@@ -6,6 +6,14 @@ this is a post-deploy codepipeline stage lambda meant to move everything in the 
 
 this function is allotted 10 seconds and 256mb of memory, if it takes longer/more memory due to the amount of files in the s3 bucket, switch to java
 
+### read_s3_file.go
+
+this is a http api triggered lambda meant to read a file with a key from the querystring and return the contents
+
+it is designed to be the handoff between the video processing and the s3 storage container
+
+this function is allotted 15 seconds and 512mb of memory
+
 ## Stack
 
 ### CodePipeline
