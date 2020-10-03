@@ -31,8 +31,8 @@ func main() {
 	curr := gocv.NewMat() // reader mat
 	defer curr.Close()
 	
-	video.ModifyContrast(videoIn,videoOut,.8)
-	video.ModifyBrightness(videoIn,videoOut,50)
+	//video.ModifyContrast(videoIn,videoOut,.8)
+	video.ModifyBrightnessSync(videoIn,videoOut,50)
 
 
 	// NOTE: the output doesn't have sound
