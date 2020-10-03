@@ -66,3 +66,11 @@ function uploadVideo() {
 }
 
 document.getElementById("upload-btn").addEventListener("click", uploadVideo);
+
+
+
+// Function shortens f to 2 decimal places
+var shorten_float = (f) => {
+  var shortened_string = f.toFixed(2);
+  return shortened_string;
+}
