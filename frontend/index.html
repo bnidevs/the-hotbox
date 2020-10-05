@@ -10,27 +10,21 @@
 			<input type="file" id="upload" accept=".mp4, .m4a">
 			<button id="upload-btn">Upload</button>
 		</div>
-		
-		<!--Progress tag-->
-		<div class="row">
-			<label for="file">Progress: </label>
-			<progress id="file" value="12" max="100">
-		</div>
+
 		<br>
-		
+
 		<div id="progress-container" class="row">
-			<label id="upload-label" for="progbar">Uploading... </label>
-			<progress id="progbar" value="0" max="100"></progress>
-			<div id="progress"></div>
+			<label id="upload-label" for="uploadprogressbar">Uploading... </label>
+			<progress id="uploadprogressbar" value="0" max="100"></progress>
+			<div id="uploadprogress"></div>
 		</div>
-		
-		<!-- Another progress container, same format as the upload progress container, with different IDs -->
+
 		<div id="progress-container" class="row">
-			<label id="progress-label" for="progbar">Progress.. </label>
-			<progress id="prog" value="0" max="100"></progress>
-			<div id="prog"></div>
+			<label id="process-label" for="procssingprogressbar">Processing... </label>
+			<progress id="procssingprogressbar" value="0" max="100"></progress>
+			<div id="procssingprogress"></div>
 		</div>
-		
+
 		<div id="slider-container" class="column">
 			<div class="row split slider">
 				<label id="brightness-label" for="brightness">Brightness </label>

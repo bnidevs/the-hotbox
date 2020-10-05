@@ -2,8 +2,8 @@ var bucketName = "thehotboxupload";
 var bucketRegion = 'us-east-1';
 var IdentityPoolId = 'us-east-1:2271f583-09e5-4212-b72a-4024f2cea3c5';
 
-let progbar = document.getElementById("progbar");
-let prognum = document.getElementById("progress");
+let uploadprogbar = document.getElementById("uploadprogressbar");
+let uploadprognum = document.getElementById("uploadprogress");
 
 var videofilename;
 
@@ -12,11 +12,6 @@ AWS.config.update({
   credentials: new AWS.CognitoIdentityCredentials({
     IdentityPoolId: IdentityPoolId
   })
-});
-
-var s3 = new AWS.S3({
-  apiVersion: "2006-03-01",
-  params: { Bucket: bucketName }
 });
 
 function uuidv4() {
@@ -52,8 +47,8 @@ function uploadVideo() {
       Body: file
     }
   }).on("httpUploadProgress", function(e){
-    progbar.value = e.loaded / filesize * 100;
-    prognum.innerText = progbar.value + "%";
+    uploadprogbar.value = e.loaded / filesize * 100;
+    uploadprognum.innerText = shorten_float(uploadprogbar.value) + "%";
   });
 
   var promise = upload.promise();
@@ -82,10 +77,6 @@ function callLambdaProcess() {
 
 document.getElementById("upload-btn").addEventListener("click", uploadVideo);
 
-
-
-// Function shortens f to 2 decimal places
 var shorten_float = (f) => {
-  var shortened_string = f.toFixed(2);
-  return shortened_string;
+  return f.toFixed(2);
 }
