@@ -5,17 +5,20 @@ import (
         "io/ioutil"
         "context"
         "log"
-      	"github.com/aws/aws-lambda-go/events"
       	"github.com/aws/aws-lambda-go/lambda"
         "github.com/aws/aws-sdk-go/service/s3"
         "github.com/aws/aws-sdk-go/aws"
         "github.com/aws/aws-sdk-go/aws/session"
 )
 
-func HandleRequest(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+type Evt struct {
+        Fname string `json:"videofilename"`
+}
+
+func HandleRequest(ctx context.Context, event Evt) (string, error) {
         s3session := s3.New(session.New())
 
-        getObjInput := &s3.GetObjectInput{Bucket: aws.String("thehotboxupload"), Key: aws.String(request.QueryStringParameters["videofilename"])}
+        getObjInput := &s3.GetObjectInput{Bucket: aws.String("thehotboxupload"), Key: aws.String(event.Fname)}
 
         result, err := s3session.GetObject(getObjInput)
         if(err != nil){
@@ -31,9 +34,7 @@ func HandleRequest(ctx context.Context, request events.APIGatewayProxyRequest) (
 
         rtrnstr := fmt.Sprintf("%s", blob)
 
-        rtrn := events.APIGatewayProxyResponse{StatusCode: 200, Body: rtrnstr}
-
-        return rtrn, nil
+        return rtrnstr, nil
 }
 
 func main() {
