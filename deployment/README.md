@@ -8,7 +8,7 @@ this function is allotted 10 seconds and 256mb of memory, if it takes longer/mor
 
 ### read_s3_file.go
 
-this is a http api triggered lambda meant to read a file with a key from the querystring and return the contents
+this is a client side aws sdk triggered lambda meant to read a file with a key from the querystring and return the contents
 
 it is designed to be the handoff between the video processing and the s3 storage container
 
