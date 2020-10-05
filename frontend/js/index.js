@@ -5,6 +5,8 @@ var IdentityPoolId = 'us-east-1:2271f583-09e5-4212-b72a-4024f2cea3c5';
 let progbar = document.getElementById("progbar");
 let prognum = document.getElementById("progress");
 
+var videofilename;
+
 AWS.config.update({
   region: bucketRegion,
   credentials: new AWS.CognitoIdentityCredentials({
@@ -39,14 +41,14 @@ function uploadVideo() {
   }
 
   var file = files[0];
-  var fileName = uuidv4() + file.name;
+  videofilename = uuidv4() + file.name;
 
   document.getElementById("progress-container").style.display = "flex";
 
   var upload = new AWS.S3.ManagedUpload({
     params: {
       Bucket: bucketName,
-      Key: fileName,
+      Key: videofilename,
       Body: file
     }
   }).on("httpUploadProgress", function(e){
@@ -60,9 +62,30 @@ function uploadVideo() {
     function(data) {
       console.log("success");
       document.getElementById("upload-label").innerText = "Upload Done";
+      callLambdaProcess();
     },
     function(err) {console.log("error")}
   );
 }
 
+function callLambdaProcess() {
+  var lambdaParams = {
+    FunctionName: '035225278288:function:thehotboxvideoprocess',
+    Payload: '{"videofilename":"' + videofilename + '"}'
+  };
+  var lambda = new AWS.Lambda({apiVersion: '2015-03-31'});
+  lambda.invoke(lambdaParams, function(err, data){
+    if(err) console.log(err, err.stack);
+    else console.log(data);
+  });
+}
+
 document.getElementById("upload-btn").addEventListener("click", uploadVideo);
+
+
+
+// Function shortens f to 2 decimal places
+var shorten_float = (f) => {
+  var shortened_string = f.toFixed(2);
+  return shortened_string;
+}
