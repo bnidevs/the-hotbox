@@ -15,3 +15,5 @@ as a test. Any extensive testing will be done on the administrative end.
 Any PRs with minor edits will be rejected.
 
 HTML commits will automatically tested when made on the `frontend` branch.
+
+Contributions are currently limited to collaborators only.
