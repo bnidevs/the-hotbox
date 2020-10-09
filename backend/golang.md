@@ -43,6 +43,15 @@ a = append(a, b...) // equivalent to "append(a, b[0], b[1], b[2])"
 Maps work like dictionaries in Python but m[key] has an optional second return argument that returns true if the key-value pair exists.  
 Example: _, retval := map[nonexistent-key] (retval is false)
 
+## Defer
+Will execute a function after the function the defer call is inside returns.
+
+Example:
+func main() {
+    defer fmt.Println("world")  // prints second (after main() finishes)
+    fmt.Println("hello")        // prints first
+}
+
 ## Functions
 Returns types must be explicit like C++ but instead of starting with the return type, use the keyword "func" and put the return type after the function name and parameters  
 Unlike C++ though, parameter types are declared *after* the parameter names and if multiple parameters have the same type, you can omit the type declaration up until the last parameter.  
