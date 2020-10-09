@@ -22,4 +22,6 @@
   display: none;
 }
 
-  
+#download-btn {
+  display: none;
+}

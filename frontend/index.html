@@ -15,7 +15,7 @@
 		<h1></h1>
 		<h1>The Hotbox</h1>
 		<div class="row">
-			
+
 			<input type="file" id="upload" accept=".mp4, .m4a">
 			<button id="upload-btn">Upload</button>
 		</div>
@@ -52,11 +52,15 @@
 	  		<input type="range" min="1" max="100" value="1" id="noise">
 			</div>
 		</div>
+
+		<div class="row">
+			<button id="download-btn">Download</button>
+		</div>
 	</body>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.761.0/aws-sdk.min.js" integrity="sha512-Yfig5EYfmepeIWFLuGb+VenJtUfo3gXPYesx1SxVh1LLlP5HzTzIHB3WblpzOv2YlYrB3X18hSa1lZ24qm9Vqg==" crossorigin="anonymous"></script>
 	<script src="js/index.js"></script>
-	
+
 	<!--Add background Image-->
 	<style>
 	body {
@@ -64,7 +68,7 @@
 		background-repeat: no-repeat;
 		background-size: cover;
 	}
-	
+
 	body, html {
 		height: 100%;
 		font-family: "Inconsolata", sans-serif;
