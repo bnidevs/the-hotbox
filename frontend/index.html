@@ -8,41 +8,50 @@
 	</head>
 	<body class="column">
 		<h1>The Hotbox</h1>
-		<div class="row">
-			<input type="file" id="upload" accept=".mp4, .m4a">
-			<button id="upload-btn">Upload</button>
-		</div>
+		<div class = "row">
+			<div class = "column">
+				<div class="row">
+					<input type="file" id="upload" accept=".mp4, .m4a">
+					<button id="upload-btn">Upload</button>
+				</div>
 
-		<br>
+				<br>
 
-		<div id="progress-container" class="row">
-			<label id="upload-label" for="uploadprogressbar">Uploading... </label>
-			<progress id="uploadprogressbar" value="0" max="100"></progress>
-			<div id="uploadprogress"></div>
-		</div>
+				<div id="progress-container" class="row">
+					<label id="upload-label" for="uploadprogressbar">Uploading... </label>
+					<progress id="uploadprogressbar" value="0" max="100"></progress>
+					<div id="uploadprogress"></div>
+				</div>
 
-		<div id="progress-container" class="row">
-			<label id="process-label" for="procssingprogressbar">Processing... </label>
-			<progress id="procssingprogressbar" value="0" max="100"></progress>
-			<div id="procssingprogress"></div>
-		</div>
+				<div id="progress-container" class="row">
+					<label id="process-label" for="procssingprogressbar">Processing... </label>
+					<progress id="procssingprogressbar" value="0" max="100"></progress>
+					<div id="procssingprogress"></div>
+				</div>
 
-		<div id="slider-container" class="column">
-			<div class="row split slider">
-				<label id="brightness-label" for="brightness">Brightness </label>
-	  		<input type="range" min="1" max="100" value="50" id="brightness">
+				<div id="slider-container" class="column">
+					<div class="row split slider">
+						<label id="brightness-label" for="brightness">Brightness </label>
+			  		<input type="range" min="1" max="100" value="50" id="brightness">
+					</div>
+					<div class="row split slider">
+						<label id="saturation-label" for="saturation">Saturation </label>
+			  		<input type="range" min="1" max="100" value="50" id="saturation">
+					</div>
+					<div class="row split slider">
+						<label id="contrast-label" for="contrast">Contrast </label>
+			  		<input type="range" min="1" max="100" value="50" id="contrast">
+					</div>
+					<div class="row split slider">
+						<label id="noise-label" for="noise">Noise </label>
+			  		<input type="range" min="1" max="100" value="1" id="noise">
+					</div>
+				</div>
 			</div>
-			<div class="row split slider">
-				<label id="saturation-label" for="saturation">Saturation </label>
-	  		<input type="range" min="1" max="100" value="50" id="saturation">
-			</div>
-			<div class="row split slider">
-				<label id="contrast-label" for="contrast">Contrast </label>
-	  		<input type="range" min="1" max="100" value="50" id="contrast">
-			</div>
-			<div class="row split slider">
-				<label id="noise-label" for="noise">Noise </label>
-	  		<input type="range" min="1" max="100" value="1" id="noise">
+			<div class="column">
+				<div class = "image">
+					<p>Image Preview</p>
+				</div>
 			</div>
 		</div>
 
@@ -50,6 +59,15 @@
 			<button id="download-btn">Download</button>
 		</div>
 	</body>
+
+    <footer>
+    	<p>	
+    		The <a href="https://github.com/bnidevs/the-hotbox">Hotbox</a>
+    		 | An
+    		<a href="https://rcos.io/">RCOS</a>
+    		Project | Version: <code>420.69</code>
+    	</p>
+    </footer>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.761.0/aws-sdk.min.js" integrity="sha512-Yfig5EYfmepeIWFLuGb+VenJtUfo3gXPYesx1SxVh1LLlP5HzTzIHB3WblpzOv2YlYrB3X18hSa1lZ24qm9Vqg==" crossorigin="anonymous"></script>
 	<script src="js/index.js"></script>

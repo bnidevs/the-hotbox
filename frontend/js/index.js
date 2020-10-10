@@ -64,9 +64,11 @@ function uploadVideo() {
 }
 
 function callLambdaProcess() {
+  var paramspayload = {"videofilename":videofilename}
+
   var lambdaParams = {
     FunctionName: '035225278288:function:thehotboxvideoprocess',
-    Payload: '{"videofilename":"' + videofilename + '"}'
+    Payload: JSON.stringify(paramspayload)
   };
   var lambda = new AWS.Lambda({apiVersion: '2015-03-31'});
   lambda.invoke(lambdaParams, function(err, data){

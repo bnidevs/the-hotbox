@@ -18,10 +18,27 @@
   width: 20vw;
 }
 
+.image {
+  width: 12vw;
+  padding: 1vw;
+  border: 0.25vw solid gray;
+}
+
 #progress-container {
   display: none;
 }
 
 #download-btn {
   display: none;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+a {
+  color: dodgerblue;
 }
