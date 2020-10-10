@@ -18,13 +18,23 @@
   width: 20vw;
 }
 
-.footer {
+.image {
+  width: 12vw;
+  padding: 1vw;
+  border: 0.25vw solid gray;
+}
+
+#progress-container {
+  display: none;
+}
+
+footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   text-align: center;
 }
 
-#progress-container {
-  display: none;
+a {
+  color: dodgerblue;
 }
