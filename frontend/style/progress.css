@@ -28,6 +28,10 @@
   display: none;
 }
 
+#download-btn {
+  display: none;
+}
+
 footer {
   position: absolute;
   bottom: 0;
