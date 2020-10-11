@@ -8,50 +8,50 @@
 	</head>
 	<body class="column">
 		<h1>The Hotbox</h1>
-		<div class = "row">
-			<div class = "column">
-				<div class="row">
-					<input type="file" id="upload" accept=".mp4, .m4a">
-					<button id="upload-btn">Upload</button>
+		<div class="row">
+			<input type="file" id="upload" accept=".mp4, .m4a">
+			<button id="upload-btn">Upload</button>
+		</div>
+
+		<br>
+
+		<div class="row" style="width: 50vw">
+			<div id="slider-container" class="column">
+				<div class="row split slider">
+					<label id="brightness-label" for="brightness">Brightness </label>
+		  		<input type="range" min="1" max="100" value="50" id="brightness">
 				</div>
-
-				<br>
-
-				<div id="progress-container" class="row">
-					<label id="upload-label" for="uploadprogressbar">Uploading... </label>
-					<progress id="uploadprogressbar" value="0" max="100"></progress>
-					<div id="uploadprogress"></div>
+				<div class="row split slider">
+					<label id="saturation-label" for="saturation">Saturation </label>
+		  		<input type="range" min="1" max="100" value="50" id="saturation">
 				</div>
-
-				<div id="progress-container" class="row">
-					<label id="process-label" for="procssingprogressbar">Processing... </label>
-					<progress id="procssingprogressbar" value="0" max="100"></progress>
-					<div id="procssingprogress"></div>
+				<div class="row split slider">
+					<label id="contrast-label" for="contrast">Contrast </label>
+		  		<input type="range" min="1" max="100" value="50" id="contrast">
 				</div>
-
-				<div id="slider-container" class="column">
-					<div class="row split slider">
-						<label id="brightness-label" for="brightness">Brightness </label>
-			  		<input type="range" min="1" max="100" value="50" id="brightness">
-					</div>
-					<div class="row split slider">
-						<label id="saturation-label" for="saturation">Saturation </label>
-			  		<input type="range" min="1" max="100" value="50" id="saturation">
-					</div>
-					<div class="row split slider">
-						<label id="contrast-label" for="contrast">Contrast </label>
-			  		<input type="range" min="1" max="100" value="50" id="contrast">
-					</div>
-					<div class="row split slider">
-						<label id="noise-label" for="noise">Noise </label>
-			  		<input type="range" min="1" max="100" value="1" id="noise">
-					</div>
+				<div class="row split slider">
+					<label id="noise-label" for="noise">Noise </label>
+		  		<input type="range" min="1" max="100" value="1" id="noise">
 				</div>
 			</div>
 			<div class="column">
-				<div class = "image">
-					<p>Image Preview</p>
+				<div class="image">
+					<p>Under Construction</p>
 				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div id="progress-container" class="row">
+				<label id="upload-label" for="uploadprogressbar">Uploading... </label>
+				<progress id="uploadprogressbar" value="0" max="100"></progress>
+				<div id="uploadprogress"></div>
+			</div>
+
+			<div id="progress-container" class="row">
+				<label id="process-label" for="procssingprogressbar">Processing... </label>
+				<progress id="procssingprogressbar" value="0" max="100"></progress>
+				<div id="procssingprogress"></div>
 			</div>
 		</div>
 
@@ -65,10 +65,8 @@
     		The <a href="https://github.com/bnidevs/the-hotbox">Hotbox</a>
     		 | An
     		<a href="https://rcos.io/">RCOS</a>
-    		Project | Version: <code>420.69</code>
-				<label class="switch">
-					<input type="checkbox" id="themeSwitch" onclick="toggleTheme()">
-				</label>
+    		Project | Version: <code>420.69</code> | Dark Mode
+				<input type="checkbox" id="themeSwitch" onclick="toggleTheme()">
     	</p>
     </footer>
 

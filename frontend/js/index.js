@@ -84,6 +84,6 @@ var shorten_float = (f) => {
 }
 
 function toggleTheme(){
-  var element=document.body;
+  var element = document.body;
   element.classList.toggle("dark-mode");
 }
