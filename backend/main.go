@@ -32,7 +32,8 @@ func main() {
 	defer curr.Close()
 	
 	//video.ModifyContrast(videoIn,videoOut,.8)
-	video.ModifyBrightnessSync(videoIn,videoOut,50)
+	// video.ModifyBrightnessSync(videoIn,videoOut,50)
+	video.ModifySaturation(videoIn,videoOut,0.8)
 
 
 	// NOTE: the output doesn't have sound

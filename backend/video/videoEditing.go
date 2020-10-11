@@ -49,3 +49,22 @@ func ModifyContrast(videoIn *gocv.VideoCapture, videoOut *gocv.VideoWriter, alph
 	}
 }
 	
+
+func ModifySaturation(videoIn *gocv.VideoCapture, videoOut *gocv.VideoWriter, scale float64) {
+	curr := gocv.NewMat() // reader mat
+	defer curr.Close()
+
+	for {
+		if ok := videoIn.Read(&curr); !ok {
+			return
+		}
+		
+		if curr.Empty() { 
+			continue
+		}
+		
+		image.ModifySaturation(&curr, scale)
+		videoOut.Write(curr)
+
+	}
+}

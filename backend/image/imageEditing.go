@@ -13,9 +13,9 @@ func ModifyBrightness(frame *gocv.Mat, change int16) {
 	// and the three in between are the BGR channels
 	for i := 0; i < len(framedata); i += 3 {
 		// done like this so we can add weights
-		framedata[i] = utils.Int16ToUnit8(int16(framedata[i]) + change) // B 
-		framedata[i+1] = utils.Int16ToUnit8(int16(framedata[i+1]) + change) // G
-		framedata[i+2] = utils.Int16ToUnit8(int16(framedata[i+2]) + change) // R
+		framedata[i] = utils.Int16ToUint8(int16(framedata[i]) + change) // B 
+		framedata[i+1] = utils.Int16ToUint8(int16(framedata[i+1]) + change) // G
+		framedata[i+2] = utils.Int16ToUint8(int16(framedata[i+2]) + change) // R
 	}
 }
 
@@ -48,6 +48,48 @@ func ModifyContrast(frame *gocv.Mat, alpha float64) {
 
 
 
+// Less computation and faster than ModifySaturation1. Explained in the link below
+// https://stackoverflow.com/questions/13806483/increase-or-decrease-color-saturation
+// -1 <= scale <= 1
+func ModifySaturation(frame *gocv.Mat, scale float64) {
+	framedata := frame.DataPtrUint8()
+	for i := 0; i < len(framedata); i += 3 {
+		b := float64(framedata[i])
+		g := float64(framedata[i+1])
+		r := float64(framedata[i+2])
+		gray := 0.1140*b + 0.5870*g + 0.2989*r
+
+		framedata[i] = utils.Float64ToUint8(-gray*scale + b*(1+scale))
+		framedata[i+1] = utils.Float64ToUint8(-gray*scale + g*(1+scale))
+		framedata[i+2] = utils.Float64ToUint8(-gray*scale + r*(1+scale))
+	}
+}
+
+
+
+
+
+// The most standard way to modify saturation, but it's slow because of color space conversion
+// -1 <= scale <= 1
+func ModifySaturation1(frame *gocv.Mat, scale float64) {
+	//Convert a BGR image to a HSV image
+	gocv.CvtColor(*frame, frame, gocv.ColorBGRToHSV)
+
+	framedata := frame.DataPtrUint8()
+
+	for i := 0; i < len(framedata); i += 3 {
+		//Modify S(saturation) only
+		new_saturation := float64(framedata[i+1]) * (1+scale)
+		if new_saturation > 255 {
+			new_saturation = 255
+		}
+
+		framedata[i+1] = uint8(new_saturation)
+	}
+
+	gocv.CvtColor(*frame, frame, gocv.ColorHSVToBGR)
+
+}
 
 
 // adds/subtracts a constant value from each pixel, modifying the brightness

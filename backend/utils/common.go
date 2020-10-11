@@ -1,7 +1,17 @@
 package utils
 
 // nice closure to expedite the process of keeping the values between 0 and 255
-func Int16ToUnit8(val int16) uint8 { 
+func Int16ToUint8(val int16) uint8 { 
+	if val < 0 {
+		return 0
+	} else if val > 255 {
+		return 255
+	} else {
+		return uint8(val)
+	}
+}
+
+func Float64ToUint8(val float64) uint8 { 
 	if val < 0 {
 		return 0
 	} else if val > 255 {
