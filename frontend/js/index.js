@@ -82,3 +82,8 @@ document.getElementById("upload-btn").addEventListener("click", uploadVideo);
 var shorten_float = (f) => {
   return f.toFixed(2);
 }
+
+function toggleTheme(){
+  var element=document.body;
+  element.classList.toggle("dark-mode");
+}

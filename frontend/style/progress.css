@@ -42,3 +42,18 @@ footer {
 a {
   color: dodgerblue;
 }
+:root {
+    --primary-color: #000000;
+    --secondary-color: #000000;
+    --bg-color: #FFFFFF;
+}
+body{
+  background-color: white;
+  color: black;
+  --secondary-color: #000000;
+}
+.dark-mode{
+  background-color:black;
+  color:white;
+  --secondary-color: #FFFFFF;
+}
