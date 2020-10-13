@@ -1,14 +1,18 @@
 # Go for programmers experienced with Python and C++
 ## Variables
+```
 var a \<type\> = \<value\> (zero-valued if value is not included)  
 var a = \<value\> (Type Inference)  
 a := \<value\> (Equivalent to var a = \<value\>)  
 For constants, use const instead of var.  
 "\_" is a blank identifier and can be used to ignore return values for functions
+```
 
 ## For loop
 Exactly like C/C++ for loops but without parentheses  
+```
 for \<init\>; \<break condition\>; \<increment\> { }  
+```
 There are no while loops in Go but for {} or for true {} will work like while true
 
 ### Range
@@ -31,7 +35,8 @@ Arrays can be sliced like Python but unlike Python all elements must have the sa
 To append individual elements into an array, use append(array, element1, element2, ...)  
 To append elements of one array into another add an ellipsis (...) after the array  
   
-### Examples:  
+### Examples:
+```  
 e := make([]string, 3) (Make a string of length 3)  
   
 e := make(map[key-type]val-type)  
@@ -39,27 +44,32 @@ e := make(map[key-type]val-type)
 a := []string{"John", "Paul"}  
 b := []string{"George", "Ringo", "Pete"}  
 a = append(a, b...) // equivalent to "append(a, b[0], b[1], b[2])"  
+```
   
 Maps work like dictionaries in Python but m[key] has an optional second return argument that returns true if the key-value pair exists.  
-Example: _, retval := map[nonexistent-key] (retval is false)
+Example: `_, retval := map[nonexistent-key] (retval is false)`
 
 ## Defer
 Will execute a function after the function the defer call is inside returns.
 
-Example:
+**Example**:
+```
 func main() {
-    defer fmt.Println("world")  // prints second (after main() finishes)
-    fmt.Println("hello")        // prints first
+  defer fmt.Println("world")  // prints second (after main() finishes)
+  fmt.Println("hello")        // prints first
 }
+```
 
 ## Functions
 Returns types must be explicit like C++ but instead of starting with the return type, use the keyword "func" and put the return type after the function name and parameters  
 Unlike C++ though, parameter types are declared *after* the parameter names and if multiple parameters have the same type, you can omit the type declaration up until the last parameter.  
-**Examples**:  
+**Examples**: 
+``` 
 func fib(n uint) uint {  
-if n < 1 return n  
-else return fib(n - 1) + fib(n - 2)  
+  if n < 1 return n  
+  else return fib(n - 1) + fib(n - 2)  
 }  
 func sum(a, b, c int) int {  
-return a + b + c  
+  return a + b + c  
 }
+```
