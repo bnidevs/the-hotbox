@@ -16,22 +16,34 @@
 		<br>
 
 		<div class="row" style="width: 50vw">
-			<div id="slider-container" class="column">
-				<div class="row split slider">
-					<label id="brightness-label" for="brightness">Brightness </label>
-		  		<input type="range" min="1" max="100" value="50" id="brightness">
+			<div class = "column">
+				<div id="slider-container" class="column">
+					<div class="row split slider">
+						<label id="brightness-label" for="brightness">Brightness </label>
+		  			<input type="range" min="1" max="100" value="50" id="brightness">
+					</div>
+					<div class="row split slider">
+						<label id="saturation-label" for="saturation">Saturation </label>
+		  			<input type="range" min="1" max="100" value="50" id="saturation">
+					</div>
+					<div class="row split slider">
+						<label id="contrast-label" for="contrast">Contrast </label>
+		  			<input type="range" min="1" max="100" value="50" id="contrast">
+					</div>
+					<div class="row split slider">
+						<label id="noise-label" for="noise">Noise </label>
+		  			<input type="range" min="1" max="100" value="1" id="noise">
+					</div>
 				</div>
-				<div class="row split slider">
-					<label id="saturation-label" for="saturation">Saturation </label>
-		  		<input type="range" min="1" max="100" value="50" id="saturation">
-				</div>
-				<div class="row split slider">
-					<label id="contrast-label" for="contrast">Contrast </label>
-		  		<input type="range" min="1" max="100" value="50" id="contrast">
-				</div>
-				<div class="row split slider">
-					<label id="noise-label" for="noise">Noise </label>
-		  		<input type="range" min="1" max="100" value="1" id="noise">
+				<div id="checkbox-container" class="row split checkbox">
+					<div class="row">
+						<input type="checkbox" name="option1" value="laser-eyes">
+						<label for="option1">Laser Eyes</label><br>
+					</div>
+					<div class="row">
+						<input type="checkbox" name="option2" value="head-bulge">
+						<label for="option2">Head Bulge</label><br>
+					</div>
 				</div>
 			</div>
 			<div class="column">
