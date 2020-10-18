@@ -67,3 +67,10 @@ body{
 #themeSwitch{
   vertical-align: text-bottom;
 }
+div {
+  margin-bottom: 20px;
+}
+
+div:last-child{
+  margin-bottom: none;
+}
