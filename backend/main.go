@@ -127,6 +127,15 @@ func main() {
 	video, _ := gocv.VideoCaptureFile(file) // open file as video
 	defer video.Close()
 
+	// Read the first frame, pass it to the JS API
+	first := gocv.NewMat() // reader mat
+	defer first.Close()
+  	vidcap := gocv.VideoCapture(*video)     
+  	success := vidcap.Read(&first)     
+  	if (success) {
+  		gocv.IMWrite("first_frame.jpg", first)  // save frame as JPEG file
+  	}
+
 	var outfilename strings.Builder
 	outfilename.WriteString(file[:strings.Index(file,".")])
 	outfilename.WriteString("out")
