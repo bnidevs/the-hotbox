@@ -7,8 +7,6 @@ import (
 	"./video"
 )
 
-
-
 func main() {
 	if len(os.Args) != 2 {
 		fmt.Println("arg err") // check number of cli arguments
@@ -19,30 +17,21 @@ func main() {
 	videoIn:= video.OpenVideo(file) // open file as video
 	defer videoIn.Close()
 
-	// Read the first frame, pass it to the JS API
-	first := gocv.NewMat() // reader mat
-	defer first.Close()
-	vidcap := gocv.VideoCapture(*videoIn)     
-	success := vidcap.Read(&first)     
-	if (success) {
-		gocv.IMWrite("first_frame.jpg", first)  // save frame as JPEG file
-	}
-
-	outfilename := video.NameOut(file)
+  outfilename := video.NameOut(file)
 	videoOut, _ := gocv.VideoWriterFile(outfilename,
-					    videoIn.CodecString(),
-					    videoIn.Get(gocv.VideoCaptureFPS),
-					    int(videoIn.Get(gocv.VideoCaptureFrameWidth)),
-					    int(videoIn.Get(gocv.VideoCaptureFrameHeight)),
-					    true)
+								videoIn.CodecString(),
+								videoIn.Get(gocv.VideoCaptureFPS),
+								int(videoIn.Get(gocv.VideoCaptureFrameWidth)),
+								int(videoIn.Get(gocv.VideoCaptureFrameHeight)),
+								true)
 	defer videoOut.Close()
 
 	curr := gocv.NewMat() // reader mat
 	defer curr.Close()
 	
 	//video.ModifyContrast(videoIn,videoOut,.8)
-	// video.ModifyBrightnessSync(videoIn,videoOut,50)
-	video.ModifySaturation(videoIn,videoOut,0.8)
+  video.ModifySaturation(videoIn,videoOut,0.8)
+	video.ModifyBrightnessSync(videoIn,videoOut,50)
 
 
 	// NOTE: the output doesn't have sound
