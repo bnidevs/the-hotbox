@@ -18,20 +18,28 @@
 			<div class = "column">
 				<div id="slider-container" class="column">
 					<div class="row split slider">
-						<label id="brightness-label" for="brightness">Brightness </label>
-		  			<input type="range" min="1" max="100" value="50" id="brightness">
+						<label id="brightness-label" for="brightness">Brightness: </label>
+						<label id="brightness-value" for="noise">50</label>
+		  				<input type="range" min="0" max="100" value="50" id="brightness-slider"
+		  				       oninput="displaySliderValue('brightness-value', id)">
 					</div>
 					<div class="row split slider">
-						<label id="saturation-label" for="saturation">Saturation </label>
-		  			<input type="range" min="1" max="100" value="50" id="saturation">
+						<label id="saturation-label" for="saturation">Saturation: </label>
+						<label id="saturation-value" for="saturation">50</label>
+		  				<input type="range" min="0" max="100" value="50" id="saturation-slider"
+		  				       oninput="displaySliderValue('saturation-value', id)">
 					</div>
 					<div class="row split slider">
-						<label id="contrast-label" for="contrast">Contrast </label>
-		  			<input type="range" min="1" max="100" value="50" id="contrast">
+						<label id="contrast-label" for="contrast">Contrast:   </label>
+						<label id="contrast-value" for="contrast">50</label>
+		  				<input type="range" min="0" max="100" value="50" id="contrast-slider"
+		  				       oninput="displaySliderValue('contrast-value', id)">
 					</div>
 					<div class="row split slider">
-						<label id="noise-label" for="noise">Noise </label>
-		  			<input type="range" min="1" max="100" value="1" id="noise">
+						<label id="noise-label" for="noise">Noise:      </label>
+						<label id="noise-value" for="noise">0</label>
+		  				<input type="range" min="0" max="100" value="0" id="noise-slider"
+		  				       oninput="displaySliderValue('noise-value', id)">
 					</div>
 				</div>
 				<div id="checkbox-container" class="row split checkbox">

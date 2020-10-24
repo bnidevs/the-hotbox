@@ -98,6 +98,12 @@ var shorten_float = (f) => {
   return f.toFixed(2);
 }
 
+function displaySliderValue(id1, id2){
+  var slider_value = document.getElementById(id1);
+  var slider_dragger = document.getElementById(id2);
+  slider_value.innerHTML = slider_dragger.value;
+}
+
 function toggleTheme(){
   var element = document.body;
   element.classList.toggle("dark-mode");
