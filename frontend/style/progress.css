@@ -21,7 +21,7 @@
   width: 15vw;
 }
 
-.image {
+#preview-image {
   width: 12vw;
   padding: 1vw;
   border: 0.25vw solid gray;
@@ -66,4 +66,11 @@ body{
 
 #themeSwitch{
   vertical-align: text-bottom;
+}
+div {
+  margin-bottom: 20px;
+}
+
+div:last-child{
+  margin-bottom: none;
 }
