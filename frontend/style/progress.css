@@ -6,7 +6,6 @@
 
 .row {
   display: flex;
-  font-family: "Comic Sans MS", cursive, sans-serif;
   justify-content: space-evenly;
 }
 
@@ -59,21 +58,6 @@ body{
   --secondary-color: #000000;
 }
 
-.button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 15px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #fff;
-  background-color: #4CAF50;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
-}
-
 .dark-mode{
   background-color:black;
   color:white;
@@ -90,8 +74,3 @@ div {
 div:last-child{
   margin-bottom: none;
 }
-
-h1 {
-  font-family: Impact, Charcoal, sans-serif;
-}
-
