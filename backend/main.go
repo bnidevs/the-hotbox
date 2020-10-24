@@ -5,6 +5,7 @@ import (
 	"os"
 	"gocv.io/x/gocv"
 	"./video"
+	"./image"
 )
 
 
@@ -31,10 +32,19 @@ func main() {
 	curr := gocv.NewMat() // reader mat
 	defer curr.Close()
 	
+	//TESTING
+
 	//video.ModifyContrast(videoIn,videoOut,.8)
 	// video.ModifyBrightnessSync(videoIn,videoOut,50)
-	video.ModifySaturation(videoIn,videoOut,0.8)
+	//video.ModifySaturation(videoIn,videoOut,0.8)
 
+	videoIn.Set(gocv.VideoCapturePosFrames, float64(150))
+	videoIn.Read(&curr)
+	image.PerlinNoiseDistortion(&curr)
+	// image.ModifyBrightness(&curr,50)
+	window := gocv.NewWindow("test")
+	window.IMShow(curr)
+	window.WaitKey(10000)
 
 	// NOTE: the output doesn't have sound
 }

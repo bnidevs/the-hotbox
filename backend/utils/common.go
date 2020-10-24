@@ -1,5 +1,7 @@
 package utils
 
+import "math"
+
 // nice closure to expedite the process of keeping the values between 0 and 255
 func Int16ToUint8(val int16) uint8 { 
 	if val < 0 {
@@ -29,5 +31,17 @@ func Max(b, g, r uint8) uint8 {
 		return g
 	} else {
 		return r
+	}
+}
+
+
+func Constrain(val float64, low_bound int, high_bound int) int {
+	res := int(math.Round(val))
+	if res < low_bound {
+		return low_bound
+	} else if res > high_bound  {
+		return high_bound
+	} else {
+		return res
 	}
 }
