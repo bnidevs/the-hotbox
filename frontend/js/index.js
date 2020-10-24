@@ -101,7 +101,7 @@ var shorten_float = (f) => {
 function displaySliderValue(id1, id2){
   var slider_value = document.getElementById(id1);
   var slider_dragger = document.getElementById(id2);
-  slider_value.innerHTML = slider_dragger.value;
+  slider_value.innerHTML = slider_dragger.value + " ";
 }
 
 function toggleTheme(){
