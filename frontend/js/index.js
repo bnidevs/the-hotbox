@@ -58,6 +58,7 @@ function uploadVideo() {
       console.log("success");
       document.getElementById("upload-label").innerText = "Upload Done";
       checkFileSize();
+      getImgPreview();
       callLambdaProcess();
     },
     function(err) {console.log("error")}
@@ -69,6 +70,20 @@ function checkFileSize() {
 
   var lambdaParams = {
     FunctionName: '035225278288:function:thehotboxcheckfilesize',
+    Payload: JSON.stringify(paramspayload)
+  };
+  var lambda = new AWS.Lambda({apiVersion: '2015-03-31'});
+  lambda.invoke(lambdaParams, function(err, data){
+    if(err) console.log(err, err.stack);
+    else console.log(data);
+  });
+}
+
+function getImgPreview() {
+  var paramspayload = {"videofilename":videofilename}
+
+  var lambdaParams = {
+    FunctionName: '035225278288:function:thehotboximagepreview',
     Payload: JSON.stringify(paramspayload)
   };
   var lambda = new AWS.Lambda({apiVersion: '2015-03-31'});
