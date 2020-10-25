@@ -18,35 +18,56 @@
 			<div class = "column">
 				<div id="slider-container" class="column">
 					<div class="row split slider">
-						<label id="brightness-label" for="brightness">Brightness </label>
-		  			<input type="range" min="1" max="100" value="50" id="brightness">
+						<label id="brightness-label" for="brightness">Brightness: </label>
+						<div class="row">
+							<label id="brightness-value" for="brightness">50 </label>
+		  					<input type="range" min="0" max="100" value="50" id="brightness-slider"
+		  				       	oninput="displaySliderValue('brightness-value', id)">
+		  				</div>
 					</div>
 					<div class="row split slider">
-						<label id="saturation-label" for="saturation">Saturation </label>
-		  			<input type="range" min="1" max="100" value="50" id="saturation">
+						<label id="saturation-label" for="saturation">Saturation: </label>
+						<div class="row">
+							<label id="saturation-value" for="saturation">50 </label>
+		  					<input type="range" min="0" max="100" value="50" id="saturation-slider"
+		  				       	oninput="displaySliderValue('saturation-value', id)">
+		  				</div>
 					</div>
 					<div class="row split slider">
-						<label id="contrast-label" for="contrast">Contrast </label>
-		  			<input type="range" min="1" max="100" value="50" id="contrast">
+						<label id="contrast-label" for="contrast">Contrast: </label>
+						<div class="row">
+							<label id="contrast-value" for="contrast">50 </label>
+		  					<input type="range" min="0" max="100" value="50" id="contrast-slider"
+		  				       	oninput="displaySliderValue('contrast-value', id)">
+		  				</div>
 					</div>
 					<div class="row split slider">
-						<label id="noise-label" for="noise">Noise </label>
-		  			<input type="range" min="1" max="100" value="1" id="noise">
+						<label id="noise-label" for="noise">Noise: </label>
+						<div class="row">
+							<label id="noise-value" for="noise">0 </label>
+		  					<input type="range" min="0" max="100" value="0" id="noise-slider"
+		  				       	oninput="displaySliderValue('noise-value', id)">
+		  				</div>
 					</div>
 				</div>
 				<div id="checkbox-container" class="row split checkbox">
 					<div class="row">
-						<input type="checkbox" name="option1" value="laser-eyes">
+						<input type="checkbox" name="option1" value="laser-eyes" id="laser-eyes">
 						<label for="option1">Laser Eyes</label><br>
 					</div>
 					<div class="row">
-						<input type="checkbox" name="option2" value="head-bulge">
+						<input type="checkbox" name="option2" value="head-bulge" id="head-bulge">
 						<label for="option2">Head Bulge</label><br>
 					</div>
 				</div>
 			</div>
 			<div class="column">
-				<img id="preview-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/White_flag_of_surrender.svg/320px-White_flag_of_surrender.svg.png">
+				<div class="row">
+					<img id="preview-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/White_flag_of_surrender.svg/320px-White_flag_of_surrender.svg.png">
+				</div>
+				<div class="row">
+					<button id="default-btn" class="button" onclick="setDefaults()">Defaults</button>
+				</div>
 			</div>
 		</div>
 
@@ -72,10 +93,12 @@
     <footer>
     	<p>
     		The <a href="https://github.com/bnidevs/the-hotbox">Hotbox</a>
-    		 | An
+    		| An
     		<a href="https://rcos.io/">RCOS</a>
-    		Project | Version: <code>420.69</code> | Dark Mode
-				<input type="checkbox" id="themeSwitch" onclick="toggleTheme()">
+    		Project | Version:
+    		<code>420.69</code>
+    		| Dark Mode
+			<input type="checkbox" id="themeSwitch" onclick="toggleTheme()">
     	</p>
     </footer>
 
