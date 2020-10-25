@@ -93,6 +93,7 @@ function callLambdaProcess() {
 }
 
 document.getElementById("upload-btn").addEventListener("click", uploadVideo);
+window.addEventListener("beforeunload", function(event) { setDefaults() });
 
 var shorten_float = (f) => {
   return f.toFixed(2);
