@@ -94,7 +94,15 @@ function getImgPreview() {
 }
 
 function callLambdaProcess() {
-  var paramspayload = {"videofilename":videofilename}
+  var paramspayload = {
+    "videofilename"     :   videofilename,
+    "brightness_val"    :   document.getElementById("brightness-slider").value,
+    "saturation_val"    :   document.getElementById("saturation-slider").value,
+    "contrast_val"      :   document.getElementById("contrast-slider").value,
+    "noise_val"         :   document.getElementById("noise-slider").value,
+    "laser_eyes_check"  :   document.getElementById("laser-eyes").checked,
+    "head_bulge_check"  :   document.getElementById("head-bulge").checked
+  }
 
   var lambdaParams = {
     FunctionName: '035225278288:function:thehotboxvideoprocess',
@@ -105,13 +113,6 @@ function callLambdaProcess() {
     if(err) console.log(err, err.stack);
     else console.log(data);
   });
-}
-
-document.getElementById("upload-btn").addEventListener("click", uploadVideo);
-window.addEventListener("beforeunload", function(event) { setDefaults() });
-
-var shorten_float = (f) => {
-  return f.toFixed(2);
 }
 
 function displaySliderValue(id1, id2){
@@ -137,3 +138,11 @@ function toggleTheme(){
   var element = document.body;
   element.classList.toggle("dark-mode");
 }
+
+var shorten_float = (f) => {
+  return f.toFixed(2);
+}
+
+// Event Listeners
+document.getElementById("upload-btn").addEventListener("click", uploadVideo);
+window.addEventListener("beforeunload", setDefaults());
