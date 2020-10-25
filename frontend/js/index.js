@@ -58,6 +58,7 @@ function uploadVideo() {
       console.log("success");
       document.getElementById("upload-label").innerText = "Upload Done";
       checkFileSize();
+      getImgPreview();
       callLambdaProcess();
     },
     function(err) {console.log("error")}
@@ -78,8 +79,30 @@ function checkFileSize() {
   });
 }
 
-function callLambdaProcess() {
+function getImgPreview() {
   var paramspayload = {"videofilename":videofilename}
+
+  var lambdaParams = {
+    FunctionName: '035225278288:function:thehotboximagepreview',
+    Payload: JSON.stringify(paramspayload)
+  };
+  var lambda = new AWS.Lambda({apiVersion: '2015-03-31'});
+  lambda.invoke(lambdaParams, function(err, data){
+    if(err) console.log(err, err.stack);
+    else console.log(data);
+  });
+}
+
+function callLambdaProcess() {
+  var paramspayload = {
+    "videofilename"     :   videofilename,
+    "brightness_val"    :   document.getElementById("brightness-slider").value,
+    "saturation_val"    :   document.getElementById("saturation-slider").value,
+    "contrast_val"      :   document.getElementById("contrast-slider").value,
+    "noise_val"         :   document.getElementById("noise-slider").value,
+    "laser_eyes_check"  :   document.getElementById("laser-eyes").checked,
+    "head_bulge_check"  :   document.getElementById("head-bulge").checked
+  }
 
   var lambdaParams = {
     FunctionName: '035225278288:function:thehotboxvideoprocess',
@@ -90,12 +113,6 @@ function callLambdaProcess() {
     if(err) console.log(err, err.stack);
     else console.log(data);
   });
-}
-
-document.getElementById("upload-btn").addEventListener("click", uploadVideo);
-
-var shorten_float = (f) => {
-  return f.toFixed(2);
 }
 
 function displaySliderValue(id1, id2){
@@ -121,3 +138,11 @@ function toggleTheme(){
   var element = document.body;
   element.classList.toggle("dark-mode");
 }
+
+var shorten_float = (f) => {
+  return f.toFixed(2);
+}
+
+// Event Listeners
+document.getElementById("upload-btn").addEventListener("click", uploadVideo);
+window.addEventListener("beforeunload", setDefaults());
