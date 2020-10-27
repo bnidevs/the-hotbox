@@ -7,6 +7,7 @@ import (
 
 type Evt struct {
         Fname string `json:"videofilename"`
+
         Brightness int `json:"brightness_val"`
         Saturation int `json:"saturation_val"`
         Contrast int `json:"contrast_val"`
