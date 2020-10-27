@@ -4,6 +4,7 @@ import (
 	"math"
 	"gocv.io/x/gocv"
 	"../utils"
+	"../utils/perlin"
 )
 
 // singular function that modifies everything, allows threading
@@ -11,7 +12,7 @@ func ModifyAll(frame *gocv.Mat, params utils.Parameters) {
 	ModifyBrightness(frame, params.Brightness);
 	ModifyContrast(frame, params.Contrast);
 	ModifySaturation(frame, params.Saturation);
-
+	PerlinNoiseDistortion(frame, params.Distortion);
 	// add more as needed
 }
 
@@ -55,6 +56,55 @@ func ModifyContrast(frame *gocv.Mat, alpha float64) {
 	}
 }
 
+//The link to the pseudocode I refer:
+//https://necessarydisorder.wordpress.com/2017/09/04/animated-distortion-gifs-from-a-vector-field-and-a-scalar-field/
+func PerlinNoiseDistortion(frame *gocv.Mat, amount float64) {
+	var scale float64 = 0.01
+
+	alpha := 2.0 //the weight when the sum is formed. Typically it is 2, As this approaches 1 the function is noisier.
+	beta := 2.0 //the harmonic scaling/spacing, typically 2
+	n := 3 //n is the number of iterations
+	var seed int64 = 100
+	pGenerator := perlin.NewPerlin(alpha, beta, n, seed)
+
+	rows := frame.Rows()
+	cols := frame.Cols()
+	framedata := frame.DataPtrUint8()
+	var result = make([]uint8, rows*cols*3)
+	// copy(result,framedata)
+
+	for i := 0; i < rows; i += 1 {
+		for j := 0; j < cols; j += 1 {
+			x := float64(i)
+			y := float64(j)
+			//PVector vector_field
+			w1 := amount*(pGenerator.Noise2D(scale*x,scale*y-0.5))
+			w2 := 4*amount*(pGenerator.Noise2D(100+scale*x,scale*y-0.5))
+			
+			new_x := utils.Constrain(x+w1,0,rows-1)
+			new_y := utils.Constrain(y+w2,0,cols-1)
+
+			// result[3*(new_x*cols+new_y)] = framedata[3*(i*cols+j)]
+			// result[3*(new_x*cols+new_y)+1] = framedata[3*(i*cols+j)+1]
+			// result[3*(new_x*cols+new_y)+2] = framedata[3*(i*cols+j)+2]
+
+			result[3*(i*cols+j)] = framedata[3*(new_x*cols+new_y)]
+			result[3*(i*cols+j)+1] = framedata[3*(new_x*cols+new_y)+1]
+			result[3*(i*cols+j)+2] = framedata[3*(new_x*cols+new_y)+2]
+		}
+	}
+
+	for i := 0; i < rows; i += 1 {
+		for j := 0; j < cols; j += 1 {
+			framedata[3*(i*cols+j)] = result[3*(i*cols+j)]
+			framedata[3*(i*cols+j)+1] = result[3*(i*cols+j)+1]
+			framedata[3*(i*cols+j)+2] = result[3*(i*cols+j)+2]
+		}
+	}
+
+
+	
+}
 
 
 // Less computation and faster than ModifySaturation1. Explained in the link below

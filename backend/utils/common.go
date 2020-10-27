@@ -4,6 +4,7 @@ type Parameters struct {
 	Brightness int16
 	Contrast float64
 	Saturation float64
+	Distortion float64
 }
 
 // nice closure to expedite the process of keeping the values between 0 and 255
@@ -35,5 +36,16 @@ func Max(b, g, r uint8) uint8 {
 		return g
 	} else {
 		return r
+	}
+}
+
+func Constrain(val float64, low_bound int, high_bound int) int {
+	res := int(val)
+	if res < low_bound {
+		return low_bound
+	} else if res > high_bound  {
+		return high_bound
+	} else {
+		return res
 	}
 }
