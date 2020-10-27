@@ -7,6 +7,13 @@ import (
 
 type Evt struct {
         Fname string `json:"videofilename"`
+
+        Brightness int `json:"brightness_val"`
+        Saturation int `json:"saturation_val"`
+        Contrast int `json:"contrast_val"`
+        Noise int `json:"noise_val"`
+        LaserEyes bool `json:"laser_eyes_check"`
+        HeadBulge bool `json:"head_bulge_check"`
 }
 
 func HandleRequest(ctx context.Context, event Evt) (string, error) {
