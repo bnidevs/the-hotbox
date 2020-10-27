@@ -4,7 +4,7 @@ import (
     "context"
     "log"
     "github.com/aws/aws-lambda-go/lambda"
-	  "gocv.io/x/gocv"
+    "gocv.io/x/gocv"
 )
 
 type Evt struct {
