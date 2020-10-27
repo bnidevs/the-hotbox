@@ -6,6 +6,15 @@ import (
 	"../utils"
 )
 
+// singular function that modifies everything, allows threading
+func ModifyAll(frame *gocv.Mat, params utils.Parameters) {
+	ModifyBrightness(frame, params.Brightness);
+	ModifyContrast(frame, params.Contrast);
+	ModifySaturation(frame, params.Saturation);
+
+	// add more as needed
+}
+
 
 func ModifyBrightness(frame *gocv.Mat, change int16) {
 	framedata := frame.DataPtrUint8()
@@ -20,14 +29,14 @@ func ModifyBrightness(frame *gocv.Mat, change int16) {
 }
 
 
-const MAXIMUM_BRIGHTNESS = 3
+const MAXIMUM_CONTRAST = 3
 func ModifyContrast(frame *gocv.Mat, alpha float64) {
 	framedata := frame.DataPtrUint8()
 	
 	// precomputes all brightness for this value for alpha
 	var precomputed_brightness [256]float64
 	for i := 0; i < 256; i++ {
-		precomputed_brightness[i] = 255*(1 - 1/(1 + math.Pow(255.0/float64(i) - 1, -MAXIMUM_BRIGHTNESS*alpha - 1)))
+		precomputed_brightness[i] = 255*(1 - 1/(1 + math.Pow(255.0/float64(i) - 1, -MAXIMUM_CONTRAST*alpha - 1)))
 	}
 
 	// goes through every pixel and does the following:

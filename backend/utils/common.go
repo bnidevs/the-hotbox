@@ -1,5 +1,11 @@
 package utils
 
+type Parameters struct {
+	Brightness int16
+	Contrast float64
+	Saturation float64
+}
+
 // nice closure to expedite the process of keeping the values between 0 and 255
 func Int16ToUint8(val int16) uint8 { 
 	if val < 0 {
