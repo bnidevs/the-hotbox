@@ -1,8 +1,8 @@
 package video
 
 import (
-	"fmt"
 	"container/heap"
+	"fmt"
 	"sync"
 
 	"../image"
@@ -73,8 +73,7 @@ func ModifyVideoThreaded(videoIn *gocv.VideoCapture, videoOut *gocv.VideoWriter,
 	fmt.Printf("start modification\n")
 
 	// goes through the frames and modifies them, threaded
-	wg.Add(1)
-	for ok := videoIn.Read(&curr); !ok; ok, i = videoIn.Read(&curr), i+1 {
+	for ok := videoIn.Read(&curr); ok; ok, i = videoIn.Read(&curr), i+1 {
 		if curr.Empty() {
 			continue
 		}
@@ -85,17 +84,16 @@ func ModifyVideoThreaded(videoIn *gocv.VideoCapture, videoOut *gocv.VideoWriter,
 			image.ModifyAll(&curr, paramlist)
 
 			frame := &utils.Frame{
-				Image:	  curr,
+				Image:    curr,
 				Priority: i,
 			}
 			heap.Push(&pq, frame)
 		}(i)
 	}
-	wg.Done()
 	wg.Wait()
-	
+
 	fmt.Printf("end modification: %v frames\n", pq.Len())
-	
+
 	for pq.Len() > 1 {
 		frame := heap.Pop(&pq).(*utils.Frame)
 		videoOut.Write(frame.Image)
