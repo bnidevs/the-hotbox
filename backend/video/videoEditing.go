@@ -47,6 +47,20 @@ func ModifyVideo(imagefunc func(*gocv.Mat, float64), videoIn *gocv.VideoCapture,
 }
 */
 
+func ModifyVideoSequential(videoIn *gocv.VideoCapture, videoOut *gocv.VideoWriter, paramlist utils.Parameters) {
+	curr := gocv.NewMat()
+	defer curr.Close()
+
+	for ok := videoIn.Read(&curr); ok; ok = videoIn.Read(&curr) {
+		if curr.Empty() {
+			continue
+		}
+
+		image.ModifyAll(&curr, paramlist)
+		videoOut.Write(curr)
+	}
+}
+
 func ModifyVideoThreaded(videoIn *gocv.VideoCapture, videoOut *gocv.VideoWriter, paramlist utils.Parameters) {
 	curr := gocv.NewMat() // reader mat
 	defer curr.Close()

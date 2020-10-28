@@ -36,13 +36,14 @@ func main() {
 		Brightness: 50, 
 		Contrast:   .2, 
 		Saturation: .5,
+		Distortion: 10,
 	}
 
 	//video.ModifyContrast(videoIn,videoOut,.8)
 	// video.ModifyBrightnessSync(videoIn,videoOut,50)
 	//video.ModifySaturation(videoIn,videoOut,0.8)
 	
-	video.ModifyVideoThreaded(videoIn, videoOut, parameters)
+	video.ModifyVideoSequential(videoIn, videoOut, parameters)
 
 	// NOTE: the output doesn't have sound
 }
