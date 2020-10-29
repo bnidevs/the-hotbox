@@ -2,7 +2,6 @@ package video
 
 import (
 	"container/heap"
-	"fmt"
 	"sync"
 
 	"../image"
@@ -18,11 +17,10 @@ func ModifyVideo(imagefunc func(*gocv.Mat, float64), videoIn *gocv.VideoCapture,
 
 	var i int = 0
 	var wg sync.WaitGroup
-	pq := make(utils.PriorityQueue, 1)
-	heap.Init(&pq)
+	pq := make(utils.PriorityQueue, 0)
 
 	// Create a goroutine to modify each frame simultaneously
-	for ok := videoIn.Read(&curr); !ok; ok, i = videoIn.Read(&curr), i+1 {
+	for ok := videoIn.Read(&curr); ok; ok, i = videoIn.Read(&curr), i+1 {
 		if curr.Empty() {
 			continue
 		}
@@ -67,10 +65,9 @@ func ModifyVideoThreaded(videoIn *gocv.VideoCapture, videoOut *gocv.VideoWriter,
 
 	var i int = 0
 	var wg sync.WaitGroup
-	pq := make(utils.PriorityQueue, 1000)
-	heap.Init(&pq)
+	pq := make(utils.PriorityQueue, 0)
 
-	fmt.Printf("start modification\n")
+	//fmt.Printf("start modification\n")
 
 	// goes through the frames and modifies them, threaded
 	for ok := videoIn.Read(&curr); ok; ok, i = videoIn.Read(&curr), i+1 {
@@ -92,9 +89,9 @@ func ModifyVideoThreaded(videoIn *gocv.VideoCapture, videoOut *gocv.VideoWriter,
 	}
 	wg.Wait()
 
-	fmt.Printf("end modification: %v frames\n", pq.Len())
+	//fmt.Printf("end modification: %v frames\n", pq.Len())
 
-	for pq.Len() > 1 {
+	for pq.Len() > 0 {
 		frame := heap.Pop(&pq).(*utils.Frame)
 		videoOut.Write(frame.Image)
 	}
