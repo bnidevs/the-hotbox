@@ -36,6 +36,7 @@ func main() {
 		Contrast:   .2,
 		Saturation: .5,
 		Distortion: 10,
+		Noise: 50,
 	}
 
 	//video.ModifyContrast(videoIn,videoOut,.8)
