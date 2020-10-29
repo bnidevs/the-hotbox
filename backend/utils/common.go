@@ -5,6 +5,7 @@ type Parameters struct {
 	Contrast   float64
 	Saturation float64
 	Distortion float64
+	Noise float64
 }
 
 // nice closure to expedite the process of keeping the values between 0 and 255
