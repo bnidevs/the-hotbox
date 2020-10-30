@@ -1,14 +1,53 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
 <html lang="en">
+
 	<head>
-	<ul>
-		<li><a href="#home">Home</a></li>
-		<li><a href="#news">News</a></li>
-		<li><a href="#contact">Contact</a></li>
-		<li style="float:right"><a class="active" href="#about">About</a></li>
-	</ul>
+	
+		<div class="w3-container">
+		</div>
+
+		<div class="w3-bar w3-black">
+			<button class="w3-bar-item w3-button" onclick="openCity('Home')">Home</button>
+			<button class="w3-bar-item w3-button" onclick="openCity('Contact')">Contact</button>
+			<button class="w3-bar-item w3-button" onclick="openCity('Project Info')">Project Info</button>
+		</div>
+
+		<div id="Home" class="w3-container w3-display-container city">
+			<span onclick="this.parentElement.style.display='none'"
+			class="w3-button w3-large w3-display-topright">&times;</span>
+			<h2>Home</h2>
+			<p>Welcome to The Hotbox.</p>
+		</div>
+
+		<div id="Contact" class="w3-container w3-display-container city" style="display:none">
+			<span onclick="this.parentElement.style.display='none'"
+			class="w3-button w3-large w3-display-topright">&times;</span>
+			<h2>Contact</h2>
+			<p>Coming Soon</p> 
+		</div>
+
+		<div id="Project Info" class="w3-container w3-display-container city" style="display:none">
+			<span onclick="this.parentElement.style.display='none'"
+			class="w3-button w3-large w3-display-topright">&times;</span>
+			<h2>Project Info</h2>
+			<p>Coming Soon</p>
+		</div>
+
+		<script>
+		function openCity(cityName) {
+			var i;
+			var x = document.getElementsByClassName("city");
+			for (i = 0; i < x.length; i++) {
+				x[i].style.display = "none";  
+			}
+			document.getElementById(cityName).style.display = "block";  
+		}
+		</script>
+	
 		<title>The Hotbox</title>
 		
 		<link rel="stylesheet" type="text/css" href="style/progress.css"></link>
@@ -62,18 +101,9 @@
 			</div>
 		</div>
 		
-		</div>
-		<div class="gallery">
-			<a target="_blank" href="background.jpg">
-				<img src="background.jpg" alt="Cinque Terre" width="600" height="400">
-			</a>
-		</div>
 		
-	
-		<div class="row">
-			<button id="download-btn">Download</button>
-		</div>
-	</body>
+		
+		
 
     <footer>
     	<p>	
@@ -83,7 +113,7 @@
     		Project | Version: <code>420.69</code>
     	</p>
     </footer>
-
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.761.0/aws-sdk.min.js" integrity="sha512-Yfig5EYfmepeIWFLuGb+VenJtUfo3gXPYesx1SxVh1LLlP5HzTzIHB3WblpzOv2YlYrB3X18hSa1lZ24qm9Vqg==" crossorigin="anonymous"></script>
 	<script src="js/index.js"></script>
 
