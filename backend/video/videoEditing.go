@@ -49,11 +49,13 @@ func ModifyVideoSequential(videoIn *gocv.VideoCapture, videoOut *gocv.VideoWrite
 	curr := gocv.NewMat()
 	defer curr.Close()
 
+	paramlist.CurrFrame = 0
 	for ok := videoIn.Read(&curr); ok; ok = videoIn.Read(&curr) {
 		if curr.Empty() {
 			continue
 		}
-
+		paramlist.CurrFrame += 1
+		
 		image.ModifyAll(&curr, paramlist)
 		videoOut.Write(curr)
 	}
