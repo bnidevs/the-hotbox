@@ -157,26 +157,10 @@ function toggleTheme(){
   }
 }
 
-function checkDate(){
-  var date = new Date();
-  var month = date.getMonth()+1;
-  var day = date.getDate();
-  var date = month + "/" + day;
-  if(date == "10/31"){
-    document.getElementById("themeSwitch").value=3;
-  }
-  else if(date == "11/26"){
-    document.getElementById("themeSwitch").value=4;
-  }
-  else if(date == "12/25"){
-    document.getElementById("themeSwitch").value=5;
-  }
-  else if(date == "1/1"){
-    document.getElementById("themeSwitch").value=6;
-  }
-  else{
-    return;
-  }
+function loadTheme(){
+  //vals 2,3,4,5,6 are dark mode,halloween,thanksgiving,christmas,and newyears respectively
+  //default 1 for light mode
+  document.getElementById("themeSwitch").value=3;
   toggleTheme();
 }
 
