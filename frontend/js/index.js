@@ -136,7 +136,32 @@ function setDefaults(){
 
 function toggleTheme(){
   var element = document.body;
-  element.classList.toggle("dark-mode");
+  var themeID = document.getElementById("themeSwitch").value;
+  if(themeID == 1){
+    document.documentElement.className="light-mode";
+  }
+  else if(themeID == 2){
+    document.documentElement.className="dark-mode";
+  }
+  else if(themeID == 3){
+    document.documentElement.className="halloween";
+  }
+  else if(themeID == 4){
+    document.documentElement.className="thanksgiving";
+  }
+  else if(themeID == 5){
+    document.documentElement.className="christmas";
+  }
+  else if(themeID == 6){
+    document.documentElement.className="newyears";
+  }
+}
+
+function loadTheme(){
+  //vals 2,3,4,5,6 are dark mode,halloween,thanksgiving,christmas,and newyears respectively
+  //default 1 for light mode
+  document.getElementById("themeSwitch").value=3;
+  toggleTheme();
 }
 
 var shorten_float = (f) => {

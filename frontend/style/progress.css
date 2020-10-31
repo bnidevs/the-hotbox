@@ -52,16 +52,37 @@ a {
     --bg-color: #FFFFFF;
 }
 
-body{
+.light-mode{
   background-color: white;
   color: black;
   --secondary-color: #000000;
 }
 
 .dark-mode{
-  background-color:black;
+  background-color:#1c1c1c;
   color:white;
   --secondary-color: #FFFFFF;
+}
+
+.halloween{
+  background-color: black;
+  color: #FF7000;;
+  --secondary-color: #FF7000;
+}
+
+.thanksgiving{
+  background-color: #996237;
+  color: #F8B12C;
+}
+
+.christmas{
+  background-color: #A92921;
+  color: #0CB04A;
+}
+
+.newyears{
+  background-color: #14054c;
+  color: #ffd376;;
 }
 
 #themeSwitch{

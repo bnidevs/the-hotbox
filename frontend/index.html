@@ -6,7 +6,7 @@
 		<title>The Hotbox</title>
 		<link rel="stylesheet" type="text/css" href="style/progress.css"></link>
 	</head>
-	<body class="column">
+	<body class="column" onload="loadTheme()">
 		<h1>The Hotbox</h1>
 		<div class="row">
 			<input type="file" id="upload" accept=".mp4, .m4a">
@@ -97,8 +97,15 @@
     		<a href="https://rcos.io/">RCOS</a>
     		Project | Version:
     		<code>420.69</code>
-    		| Dark Mode
-			<input type="checkbox" id="themeSwitch" onclick="toggleTheme()">
+    		| Switch Theme
+			<select name="themetoggle" id="themeSwitch" onchange="toggleTheme()">
+				<option value="1">Light Mode</option>
+			  <option value="2">Dark Mode</option>
+				<option value="3">Halloween</option>
+				<option value="4">Thanksgiving</option>
+				<option value="5">Christmas</option>
+				<option value="6">New Years</option>
+			</select>
     	</p>
     </footer>
 
