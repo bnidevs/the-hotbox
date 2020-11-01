@@ -116,5 +116,16 @@
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.761.0/aws-sdk.min.js" integrity="sha512-Yfig5EYfmepeIWFLuGb+VenJtUfo3gXPYesx1SxVh1LLlP5HzTzIHB3WblpzOv2YlYrB3X18hSa1lZ24qm9Vqg==" crossorigin="anonymous"></script>
 	<script src="js/index.js"></script>
+	
 
+	<script>
+		function handleOnChangeEvent(x){
+			document.body.style.backgroundImage = "url('"+x+"')";
+		}
+	</script>
+	<select onchange="handleOnChangeEvent(this.value)">
+		<option value="">Select a image</option>
+		<option value="Image/Halloween.jpg">Halloween</option>
+		<option value="Image/Halloween.jpg">New Year</option>	
+		<option value="Image/Halloween.jpg">Chrismas</option>	
 </html>
