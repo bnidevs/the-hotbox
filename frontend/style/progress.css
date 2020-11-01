@@ -29,9 +29,9 @@
 }
 
 #preview-image {
-  width: 20vw;
-  max-width: 350px;
-  border: 1px solid gray;
+  width: 16vw;
+  padding: 1vw;
+  border: 0.25vw solid gray;
 }
 
 #progress-container {
