@@ -24,13 +24,12 @@
 }
 
 #preview-wrapper {
-  margin-left: 30px;
+  margin-left: 60px;
   text-align: center;
 }
 
 #preview-image {
-  width: 16vw;
-  padding: 1vw;
+  width: 20vw;
   border: 0.25vw solid gray;
 }
 
