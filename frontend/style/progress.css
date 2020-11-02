@@ -7,6 +7,7 @@
 .row {
   display: flex;
   justify-content: space-evenly;
+  max-width: 350px;
 }
 
 .split {
@@ -19,11 +20,16 @@
 
 .checkbox {
   width: 15vw;
+  max-width: 300px;
+}
+
+#preview-wrapper {
+  margin-left: 60px;
+  text-align: center;
 }
 
 #preview-image {
-  width: 12vw;
-  padding: 1vw;
+  width: 20vw;
   border: 0.25vw solid gray;
 }
 

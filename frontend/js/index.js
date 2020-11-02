@@ -82,6 +82,8 @@ function checkFileSize() {
 function getImgPreview() {
   var paramspayload = {"videofilename":videofilename}
 
+  document.getElementById("preview-image").src="assets/Halloween.jpg";
+
   var lambdaParams = {
     FunctionName: '035225278288:function:thehotboximagepreview',
     Payload: JSON.stringify(paramspayload)
