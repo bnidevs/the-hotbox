@@ -6,48 +6,6 @@
 <html lang="en">
 
 	<head>
-	
-		<div class="w3-container">
-		</div>
-
-		<div class="w3-bar w3-black">
-			<button class="w3-bar-item w3-button" onclick="openCity('Home')">Home</button>
-			<button class="w3-bar-item w3-button" onclick="openCity('Contact')">Contact</button>
-			<button class="w3-bar-item w3-button" onclick="openCity('Project Info')">Project Info</button>
-		</div>
-
-		<div id="Home" class="w3-container w3-display-container city">
-			<span onclick="this.parentElement.style.display='none'"
-			class="w3-button w3-large w3-display-topright">&times;</span>
-			<h2>Home</h2>
-			<p>Welcome to The Hotbox.</p>
-		</div>
-
-		<div id="Contact" class="w3-container w3-display-container city" style="display:none">
-			<span onclick="this.parentElement.style.display='none'"
-			class="w3-button w3-large w3-display-topright">&times;</span>
-			<h2>Contact</h2>
-			<p>Coming Soon</p> 
-		</div>
-
-		<div id="Project Info" class="w3-container w3-display-container city" style="display:none">
-			<span onclick="this.parentElement.style.display='none'"
-			class="w3-button w3-large w3-display-topright">&times;</span>
-			<h2>Project Info</h2>
-			<p>Coming Soon</p>
-		</div>
-
-		<script>
-		function openCity(cityName) {
-			var i;
-			var x = document.getElementsByClassName("city");
-			for (i = 0; i < x.length; i++) {
-				x[i].style.display = "none";  
-			}
-			document.getElementById(cityName).style.display = "block";  
-		}
-		</script>
-	
 		<title>The Hotbox</title>
 		
 		<link rel="stylesheet" type="text/css" href="style/progress.css"></link>
