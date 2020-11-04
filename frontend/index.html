@@ -2,23 +2,39 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
 <html lang="en">
 
 	<head>
 		<title>The Hotbox</title>
-		
 		<link rel="stylesheet" type="text/css" href="style/progress.css"></link>
 	</head>
+	<nav class="w3-sidebar w3-black w3-animate-top w3-xxlarge" style="display:none;padding-top:150px" id="mySidebar">
+		<a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-black w3-xxlarge w3-padding w3-display-topright" style="padding:6px 24px">
+			<i class="fa fa-remove"></i>
+		</a>
+		<div class="w3-bar-block w3-center">
+			<a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">About</a>
+			<a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Photos</a>
+			<a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Shop</a>
+			<a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Contact</a>
+		</div>
+	</nav>
+	
 	<body class="column">
 		<h1>The Hotbox</h1>
 		<div class = "row">
 			<div class = "column">
-				<div class="row">
+			
 					<input type="file" id="upload" accept=".mp4, .m4a">
 					<button id="upload-btn">Upload</button>
-				</div>
-
+			
 				<br>
 
 				<div id="progress-container" class="row">
@@ -53,9 +69,7 @@
 				</div>
 			</div>
 			<div class="column">
-				<div class = "image">
-					<p>Image Preview</p>
-				</div>
+
 			</div>
 		</div>
 		
@@ -86,4 +100,22 @@
 		<option value="Image/Halloween.jpg">Halloween</option>
 		<option value="Image/NewYear.jpg">New Year</option>	
 		<option value="Image/Halloween.jpg">Chrismas</option>	
+	</select>
+	<form action="/action_page.php" target="_blank">
+			<div class="w3-section">
+				<label>Name</label>
+				<input class="w3-input w3-border" type="text" required name="Name">
+			</div>
+			<div class="w3-section">
+				<label>Email</label>
+				<input class="w3-input w3-border" type="text" required name="Email">
+			</div>
+			<div class="w3-section">
+				<label>Message</label>
+				<input class="w3-input w3-border" required name="Message">
+			</div>
+			<button type="submit" class="w3-button w3-block w3-dark-grey">Send</button>
+		</form><br>
+	</div>
+
 </html>
