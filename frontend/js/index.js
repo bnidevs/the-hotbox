@@ -153,18 +153,34 @@ function toggleTheme(){
   }
   else if(themeID == 5){
     document.documentElement.className="christmas";
+    document.getElementsByTagName("h1")[0].style.color = "green";
   }
   else if(themeID == 6){
     document.documentElement.className="newyears";
   }
 }
 
-function loadTheme(){
-  //vals 2,3,4,5,6 are dark mode,halloween,thanksgiving,christmas,and newyears respectively
-  //default 1 for light mode
-  document.getElementById("themeSwitch").value=3;
+function checkDate(){
+  var date = new Date();
+  var month = date.getMonth()+1;
+  if(month == 10){
+    document.getElementById("themeSwitch").value=3;
+  }
+  else if(month == 11){
+    document.getElementById("themeSwitch").value=4;
+  }
+  else if(month == 12){
+    document.getElementById("themeSwitch").value=5;
+  }
+  else if(month == 1){
+    document.getElementById("themeSwitch").value=6;
+  }
+  else{
+    return;
+  }
   toggleTheme();
 }
+
 
 var shorten_float = (f) => {
   return f.toFixed(2);

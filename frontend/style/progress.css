@@ -52,6 +52,14 @@ a {
   color: dodgerblue;
 }
 
+.row:nth-child(odd){
+  color:var(--secondary-color);
+}
+
+html, body{
+  height: 100%;
+}
+
 :root {
     --primary-color: #000000;
     --secondary-color: #000000;
@@ -61,34 +69,42 @@ a {
 .light-mode{
   background-color: white;
   color: black;
-  --secondary-color: #000000;
+  --secondary-color: black;
 }
 
 .dark-mode{
   background-color:#1c1c1c;
   color:white;
-  --secondary-color: #FFFFFF;
+  --secondary-color: white;
 }
 
 .halloween{
   background-color: black;
-  color: #FF7000;;
+  color: #FF7000;
   --secondary-color: #FF7000;
 }
 
 .thanksgiving{
-  background-color: #996237;
-  color: #F8B12C;
+  background-color: #130A00;
+  color: #FAF16A;
+  --secondary-color: #FAF16A;
+  background-image: url("../assets/turkey.png");
+  background-repeat: no-repeat;
+  background-position: absolute;
+  background-position: right bottom;
+  background-size: auto;
 }
 
 .christmas{
-  background-color: #A92921;
-  color: #0CB04A;
+  background-color: #000013;
+  color: red;
+  --secondary-color:green;
 }
 
 .newyears{
   background-color: #14054c;
-  color: #ffd376;;
+  color: #ffd376;
+  --secondary-color: #ffd376;
 }
 
 #themeSwitch{
