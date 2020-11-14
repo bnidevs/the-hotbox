@@ -1,3 +1,29 @@
+html, body {
+  height: 100%;
+  font-family: Optima, sans-serif;
+  font-style: ;
+  font-size: 1vw;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+a {
+  color: dodgerblue;
+}
+
+div {
+  margin-bottom: 20px;
+}
+
+div:last-child{
+  margin-bottom: none;
+}
+
 .column {
   display: flex;
   flex-direction: column;
@@ -8,6 +34,10 @@
   display: flex;
   justify-content: space-evenly;
   max-width: 350px;
+}
+
+.row:nth-child(odd){
+  color:var(--secondary-color);
 }
 
 .split {
@@ -22,6 +52,7 @@
   width: 15vw;
   max-width: 300px;
 }
+
 
 #preview-wrapper {
   margin-left: 60px;
@@ -41,23 +72,8 @@
   display: none;
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-}
-
-a {
-  color: dodgerblue;
-}
-
-.row:nth-child(odd){
-  color:var(--secondary-color);
-}
-
-html, body{
-  height: 100%;
+#themeSwitch{
+  vertical-align: text-bottom;
 }
 
 :root {
@@ -82,38 +98,41 @@ html, body{
   background-color: black;
   color: #FF7000;
   --secondary-color: #FF7000;
-}
+  background-image: url("../assets/pumpkin.png");
+  background-repeat: no-repeat;
+  background-position: absolute;
+  background-position: left bottom;
+  background-size: 21vw;}
 
 .thanksgiving{
-  background-color: #130A00;
+  background-color: #261a0d;
   color: #FAF16A;
   --secondary-color: #FAF16A;
   background-image: url("../assets/turkey.png");
   background-repeat: no-repeat;
   background-position: absolute;
   background-position: right bottom;
-  background-size: auto;
+  background-size: 24vw;
 }
 
 .christmas{
-  background-color: #000013;
+  background-color: #003c58;
   color: red;
-  --secondary-color:green;
+  --secondary-color:#00cc00;
+  background-image: url("../assets/tree.png");
+  background-repeat: no-repeat;
+  background-position: absolute;
+  background-position: left bottom;
+  background-size: 24vw;
 }
 
 .newyears{
-  background-color: #14054c;
-  color: #ffd376;
-  --secondary-color: #ffd376;
-}
-
-#themeSwitch{
-  vertical-align: text-bottom;
-}
-div {
-  margin-bottom: 20px;
-}
-
-div:last-child{
-  margin-bottom: none;
+  background-color: #00406f;
+  color: white;
+  --secondary-color: hotpink;
+  background-image: url("../assets/new_year.png");
+  background-repeat: no-repeat;
+  background-position: absolute;
+  background-position: right bottom;
+  background-size: 24vw;
 }
