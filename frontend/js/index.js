@@ -157,7 +157,7 @@ function toggleTheme(){
   else if(themeID == 4){
     document.documentElement.className="thanksgiving";
     document.getElementsByTagName("h1")[0].style.color = "#FAF16A";
-    document.getElementsByTagName("footer")[0].style.color = "FAF16A";
+    document.getElementsByTagName("footer")[0].style.color = "#FAF16A";
   }
   else if(themeID == 5){
     document.documentElement.className="christmas";
