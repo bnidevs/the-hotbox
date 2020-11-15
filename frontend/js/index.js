@@ -82,7 +82,7 @@ function checkFileSize() {
 function getImgPreview() {
   var paramspayload = {"videofilename":videofilename}
 
-  document.getElementById("preview-image").src="assets/Halloween.jpg";
+  document.getElementById("preview-image").src="assets/no_preview.png";
 
   var lambdaParams = {
     FunctionName: '035225278288:function:thehotboximagepreview',
@@ -141,22 +141,33 @@ function toggleTheme(){
   var themeID = document.getElementById("themeSwitch").value;
   if(themeID == 1){
     document.documentElement.className="light-mode";
+    document.getElementsByTagName("h1")[0].style.color = "black";
+    document.getElementsByTagName("footer")[0].style.color = "black";
   }
   else if(themeID == 2){
     document.documentElement.className="dark-mode";
+    document.getElementsByTagName("h1")[0].style.color = "white";
+    document.getElementsByTagName("footer")[0].style.color = "white";
   }
   else if(themeID == 3){
     document.documentElement.className="halloween";
+    document.getElementsByTagName("h1")[0].style.color = "#FF7000";
+    document.getElementsByTagName("footer")[0].style.color = "#FF7000";
   }
   else if(themeID == 4){
     document.documentElement.className="thanksgiving";
+    document.getElementsByTagName("h1")[0].style.color = "#FAF16A";
+    document.getElementsByTagName("footer")[0].style.color = "#FAF16A";
   }
   else if(themeID == 5){
     document.documentElement.className="christmas";
-    document.getElementsByTagName("h1")[0].style.color = "green";
+    document.getElementsByTagName("h1")[0].style.color = "#00cc00";
+    document.getElementsByTagName("footer")[0].style.color = "white";
   }
   else if(themeID == 6){
     document.documentElement.className="newyears";
+    document.getElementsByTagName("h1")[0].style.color = "hotpink";
+    document.getElementsByTagName("footer")[0].style.color = "white";
   }
 }
 
@@ -180,7 +191,6 @@ function checkDate(){
   }
   toggleTheme();
 }
-
 
 var shorten_float = (f) => {
   return f.toFixed(2);
