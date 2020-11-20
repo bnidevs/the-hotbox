@@ -143,11 +143,13 @@ function toggleTheme(){
     document.documentElement.className="light-mode";
     document.getElementsByTagName("h1")[0].style.color = "black";
     document.getElementsByTagName("footer")[0].style.color = "black";
+    document.cookie = themeID.toString() + ";path=/";
   }
   else if(themeID == 2){
     document.documentElement.className="dark-mode";
     document.getElementsByTagName("h1")[0].style.color = "white";
     document.getElementsByTagName("footer")[0].style.color = "white";
+    document.cookie = themeID.toString() + ";path=/";
   }
   else if(themeID == 3){
     document.documentElement.className="halloween";
@@ -187,7 +189,9 @@ function checkDate(){
     document.getElementById("themeSwitch").value=6;
   }
   else{
-    return;
+  	var decoded_cookie = decodeURIComponent(document.cookie);
+  	var theme_value = decoded_cookie.substring(0,1);
+    document.getElementById("themeSwitch").value = Number(theme_value);
   }
   toggleTheme();
 }
