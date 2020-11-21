@@ -96,7 +96,7 @@ div:last-child{
 .halloween{
   background-color: black;
   color: #FF7000;
-  --secondary-color: "#FF7000"
+  --secondary-color: "#FF7000";
   background-image: url("../assets/pumpkin.png");
   background-repeat: no-repeat;
   background-position: absolute;
@@ -130,6 +130,17 @@ div:last-child{
   color: white;
   --secondary-color: hotpink;
   background-image: url("../assets/new_year.png");
+  background-repeat: no-repeat;
+  background-position: absolute;
+  background-position: right bottom;
+  background-size: 24vw;
+}
+
+.easter{
+  background-color: #9DCFDF;
+  color: orangered;
+  --secondary-color: darkmagenta;
+  background-image: url("../assets/easter.png");
   background-repeat: no-repeat;
   background-position: absolute;
   background-position: right bottom;

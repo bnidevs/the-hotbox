@@ -170,6 +170,11 @@ function toggleTheme(){
     document.documentElement.className="newyears";
     document.getElementsByTagName("h1")[0].style.color = "hotpink";
     document.getElementsByTagName("footer")[0].style.color = "white";
+  } 
+  else if(themeID == 7){
+    document.documentElement.className="easter";
+    document.getElementsByTagName("h1")[0].style.color = "darkmagenta";
+    document.getElementsByTagName("footer")[0].style.color = "darkmagenta";
   }
 }
 
@@ -182,16 +187,19 @@ function checkDate(){
   else if(month == 11){
     document.getElementById("themeSwitch").value=4;
   }
-  else if(month == 12){
+  else if(month == 12 && day <= 25){
     document.getElementById("themeSwitch").value=5;
   }
-  else if(month == 1){
+  else if((month == 12 && day > 25) || (month == 1 && day < 8)){
     document.getElementById("themeSwitch").value=6;
+  }
+  else if((month == 3 && day > 21) || (month == 4 && day < 26)){
+    document.getElementById("themeSwitch").value=7;
   }
   else{
   	var decoded_cookie = decodeURIComponent(document.cookie);
   	var theme_value = decoded_cookie.substring(0,1);
-    document.getElementById("themeSwitch").value = Number(theme_value);
+  	document.getElementById("themeSwitch").value = Number(theme_value);
   }
   toggleTheme();
 }
