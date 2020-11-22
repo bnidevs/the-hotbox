@@ -153,12 +153,12 @@ function toggleTheme(){
   }
   else if(themeID == 3){
     document.documentElement.className="halloween";
-    document.getElementsByTagName("h1")[0].style.color = "#FF7000";
+    document.getElementsByTagName("h1")[0].style.color = "#cc6600";
     document.getElementsByTagName("footer")[0].style.color = "#FF7000";
   }
   else if(themeID == 4){
     document.documentElement.className="thanksgiving";
-    document.getElementsByTagName("h1")[0].style.color = "#FAF16A";
+    document.getElementsByTagName("h1")[0].style.color = "#c65353";
     document.getElementsByTagName("footer")[0].style.color = "#FAF16A";
   }
   else if(themeID == 5){
