@@ -16,3 +16,5 @@
 .DS_Store
 dummy.mp4
 .vscode/launch.json
+.vscode/settings.json
+dummyout.mp4

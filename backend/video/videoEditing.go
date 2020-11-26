@@ -2,6 +2,7 @@ package video
 
 import (
 	"container/heap"
+	"fmt"
 	"sync"
 
 	"../image"
@@ -9,41 +10,7 @@ import (
 	"gocv.io/x/gocv"
 )
 
-/*
-// ModifyVideo helps refactor the code by extracting the goroutine implementation
-func ModifyVideo(imagefunc func(*gocv.Mat, float64), videoIn *gocv.VideoCapture, videoOut *gocv.VideoWriter, num float64) {
-	curr := gocv.NewMat() // reader mat
-	defer curr.Close()
-
-	var i int = 0
-	var wg sync.WaitGroup
-	pq := make(utils.PriorityQueue, 0)
-
-	// Create a goroutine to modify each frame simultaneously
-	for ok := videoIn.Read(&curr); ok; ok, i = videoIn.Read(&curr), i+1 {
-		if curr.Empty() {
-			continue
-		}
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			imagefunc(&curr, num)
-			frame := &utils.Frame{
-				Image:    curr,
-				Priority: i,
-			}
-			heap.Push(&pq, frame)
-		}(i)
-	}
-	wg.Wait()
-
-	// Write the modified frames into the output video in the same order as the original
-	for pq.Len() > 0 {
-		frame := heap.Pop(&pq).(*utils.Frame)
-		videoOut.Write(frame.Image)
-	}
-}
-*/
+const threadLimit int = 5
 
 func ModifyVideoSequential(videoIn *gocv.VideoCapture, videoOut *gocv.VideoWriter, paramlist utils.Parameters) {
 	curr := gocv.NewMat()
@@ -55,7 +22,7 @@ func ModifyVideoSequential(videoIn *gocv.VideoCapture, videoOut *gocv.VideoWrite
 			continue
 		}
 		paramlist.CurrFrame += 1
-		
+
 		image.ModifyAll(&curr, paramlist)
 		videoOut.Write(curr)
 	}
@@ -65,39 +32,58 @@ func ModifyVideoThreaded(videoIn *gocv.VideoCapture, videoOut *gocv.VideoWriter,
 	curr := gocv.NewMat() // reader mat
 	defer curr.Close()
 
-	var i int = 0
 	var wg sync.WaitGroup
+	var waitPush sync.WaitGroup
 	pq := make(utils.PriorityQueue, 0)
 
-	//fmt.Printf("start modification\n")
-
 	// goes through the frames and modifies them, threaded
-	for ok := videoIn.Read(&curr); ok; ok, i = videoIn.Read(&curr), i+1 {
-		if curr.Empty() {
-			continue
+	totalFrames := int(videoIn.Get(gocv.VideoCaptureFrameCount))
+	for i := 0; i < totalFrames; i += threadLimit {
+
+		// Limit the number of active threads at any given time
+		for j := 0; j < threadLimit; j++ {
+			ok := videoIn.Read(&curr)
+
+			if !ok {
+				break
+			} else if curr.Empty() {
+				continue
+			}
+
+			wg.Add(1)
+
+			go func(j int) {
+				defer wg.Done()
+				defer waitPush.Done()
+
+				image.ModifyAll(&curr, paramlist)
+
+				frame := &utils.Frame{
+					Image:    curr,
+					Priority: j,
+				}
+
+				waitPush.Wait()
+				waitPush.Add(1)
+				heap.Push(&pq, frame)
+			}(j)
+
+			// Blocking here makes it behave sequentially
+			// wg.Wait()
 		}
 
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			image.ModifyAll(&curr, paramlist)
+		// Blocking here seems to fail
+		wg.Wait()
 
-			frame := &utils.Frame{
-				Image:    curr,
-				Priority: i,
-			}
-			heap.Push(&pq, frame)
-		}(i)
+		if pq.Len() < threadLimit {
+			fmt.Println("Possible Discrepancy")
+		}
+
+		for pq.Len() > 0 {
+			frame := heap.Pop(&pq).(*utils.Frame)
+			videoOut.Write(frame.Image)
+		}
 	}
-	wg.Wait()
-
-	//fmt.Printf("end modification: %v frames\n", pq.Len())
-
-	for pq.Len() > 0 {
-		frame := heap.Pop(&pq).(*utils.Frame)
-		videoOut.Write(frame.Image)
-	}
-
 }
 
 /*
