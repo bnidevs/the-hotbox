@@ -1,21 +1,24 @@
 package image
 
 import (
+	// "fmt"
 	"math"
 	// "math/rand"
 	"../utils"
 	"../utils/perlin"
-	// "./detection"
+	"./detection"
 	"gocv.io/x/gocv"
+	// stdimage "image"
+	"image/color"
 )
 
 // singular function that modifies everything, allows threading
 func ModifyAll(frame *gocv.Mat, params utils.Parameters) {
-	ModifyBrightness(frame, params.Brightness)
-	ModifyContrast(frame, params.Contrast)
-	ModifySaturation(frame, params.Saturation)
-	PerlinNoiseDistortion(frame, params.Distortion)
-	Noise(frame, params.Noise, params.CurrFrame)
+	// ModifyBrightness(frame, params.Brightness)
+	// ModifyContrast(frame, params.Contrast)
+	// ModifySaturation(frame, params.Saturation)
+	// PerlinNoiseDistortion(frame, params.Distortion)
+	// Noise(frame, params.Noise, params.CurrFrame)
 	// add more as needed
 }
 
@@ -157,6 +160,57 @@ func Noise(frame *gocv.Mat, intensity float64, currFrame float64) {
 	}
 }
 
+
+
+func LaserEyes(frame *gocv.Mat, eyeClassifier *gocv.CascadeClassifier, 
+				faceClassifier *gocv.CascadeClassifier) {
+	rows := frame.Rows()
+	cols := frame.Cols()
+
+	grayFrame := gocv.NewMatWithSize(rows, cols, gocv.MatTypeCV8UC1)
+	defer grayFrame.Close()
+	gocv.CvtColor(*frame, &grayFrame, gocv.ColorBGRToGray)
+
+	red := color.RGBA{ R:255, G:0, B:0, A:127}
+
+	// rects := detection.DetectFaces(&grayFrame, faceClassifier)
+	eyes := detection.DetectEyes(&grayFrame, eyeClassifier, faceClassifier)
+	for _, eye := range eyes {
+		gocv.Rectangle(frame, eye, red, 2)
+	}
+
+/*
+	pupils,eyeCenters := detection.DetectPupils(&grayFrame, eyeClassifier, faceClassifier)
+	for i,pupil := range pupils {
+		fmt.Println("detected", pupils[i],pupil)
+		pt := stdimage.Point{ X: int(pupil.X), Y: int(pupil.Y)}
+
+		// Make some cool visual effects for laser eyes here
+		if pt.X != 0 {
+			centerX := float64(eyeCenters[i].X)
+			centerY := float64(eyeCenters[i].Y)
+			ptX := float64(pt.X)
+			ptY := float64(pt.Y)
+			gradient :=  (centerY-ptY)/(centerX-ptX)
+			intercept := ptY - gradient*ptX
+			endptY := float64(rows)
+			endptX := (endptY-intercept)/gradient
+			endpt := stdimage.Point{X: int(endptX), Y: int(endptY)}
+
+			gocv.Line(frame, pt, endpt, red, 5)
+			radius := int(pupil.Size/2)
+			gocv.Circle(frame, pt, radius, red, int(gocv.Filled))
+		}
+	}
+	if len(pupils)>0 {
+		gocv.DrawKeyPoints(*frame, pupils, frame, red, gocv.DrawRichKeyPoints)
+	}
+*/
+
+}
+
+
+
 // The most standard way to modify saturation, but it's slow because of color space conversion
 // -1 <= scale <= 1
 func ModifySaturation1(frame *gocv.Mat, scale float64) {
@@ -178,6 +232,8 @@ func ModifySaturation1(frame *gocv.Mat, scale float64) {
 	gocv.CvtColor(*frame, frame, gocv.ColorHSVToBGR)
 
 }
+
+
 
 // adds/subtracts a constant value from each pixel, modifying the brightness
 func ModifyBrightness1(frame *gocv.Mat, change uint8, inc bool) {

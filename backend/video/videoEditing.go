@@ -16,6 +16,20 @@ func ModifyVideoSequential(videoIn *gocv.VideoCapture, videoOut *gocv.VideoWrite
 	curr := gocv.NewMat()
 	defer curr.Close()
 
+	var faceClassifier gocv.CascadeClassifier
+	var eyeClassifier gocv.CascadeClassifier
+	if paramlist.LaserEye {
+		faceXmlLoc := "image/detection/haarcascades/haarcascade_frontalface_default.xml"
+		faceClassifier = gocv.NewCascadeClassifier()
+		faceClassifier.Load(faceXmlLoc)
+		defer faceClassifier.Close()
+
+		eyeXmlLoc:= "image/detection/haarcascades/haarcascade_eye.xml"
+		eyeClassifier = gocv.NewCascadeClassifier()
+		eyeClassifier.Load(eyeXmlLoc)
+		defer eyeClassifier.Close()
+	}
+
 	paramlist.CurrFrame = 0
 	for ok := videoIn.Read(&curr); ok; ok = videoIn.Read(&curr) {
 		if curr.Empty() {
@@ -23,6 +37,10 @@ func ModifyVideoSequential(videoIn *gocv.VideoCapture, videoOut *gocv.VideoWrite
 		}
 		paramlist.CurrFrame += 1
 
+		if paramlist.LaserEye {
+			image.LaserEyes(&curr, &eyeClassifier, &faceClassifier)
+		}
+		
 		image.ModifyAll(&curr, paramlist)
 		videoOut.Write(curr)
 	}

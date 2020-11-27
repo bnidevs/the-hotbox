@@ -37,6 +37,7 @@ func main() {
 		Saturation: .5,
 		Distortion: 10,
 		Noise:      50,
+		LaserEye: true,
 	}
 
 	video.ModifyVideoThreaded(videoIn, videoOut, parameters)

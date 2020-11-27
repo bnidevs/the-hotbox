@@ -7,6 +7,7 @@ type Parameters struct {
 	Distortion float64
 	Noise float64
 	CurrFrame float64
+	LaserEye bool
 }
 
 // nice closure to expedite the process of keeping the values between 0 and 255
