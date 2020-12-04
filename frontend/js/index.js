@@ -56,7 +56,7 @@ function uploadVideo() {
   promise.then(
     function(data) {
       console.log("success");
-      document.getElementById("upload-label").innerText = "Upload Done";
+      document.getElementById("upload-label").innerText = "Done!";
       checkFileSize();
       getImgPreview();
       callLambdaProcess();
@@ -181,6 +181,7 @@ function toggleTheme(){
 function checkDate(){
   var date = new Date();
   var month = date.getMonth()+1;
+  var day = date.getDay()-1;
   if(month == 10){
     document.getElementById("themeSwitch").value=3;
   }

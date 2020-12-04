@@ -67,8 +67,36 @@ div:last-child{
   display: none;
 }
 
+#process-btn {
+  margin-left: 1vw;
+}
+
 #download-btn {
   display: none;
+}
+
+#upload-label {
+  margin-right: 1vw;
+}
+
+#uploadprogressbar {
+  width: 16vw;
+  height: 0.8vw;
+  margin-top: 0.2vw;
+}
+
+#uploadprogress {
+  margin-left: 1vw;
+}
+
+#processingprogressbar {
+  width: 16vw;
+  height: 0.8vw;
+  margin-top: 0.2vw;
+}
+
+#processingprogressbar {
+  margin-left: 1vw;
 }
 
 #themeSwitch{
