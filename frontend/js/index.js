@@ -203,6 +203,22 @@ function checkDate(){
   	document.getElementById("themeSwitch").value = Number(theme_value);
   }
   toggleTheme();
+  setFavicon();
+}
+
+function setFavicon() {
+  var favicon_paths = ["assets/favicons/1.jpeg",
+                       "assets/favicons/2.jpeg",
+                       "assets/favicons/3.jpeg",
+                       "assets/favicons/4.jpeg",
+                       "assets/favicons/5.jpeg",
+                       "assets/favicons/6.jpeg",
+                       "assets/favicons/7.jpeg"];
+  document.getElementById("favicon").href=favicon_paths[getRandomInt(0,6)]
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 var shorten_float = (f) => {
