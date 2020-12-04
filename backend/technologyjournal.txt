@@ -1,0 +1,37 @@
+Technology Journal
+
+This page is intended to be an assembly of pages relating to GoCV development materials.
+Pages/guides we found that helped us are present here; the more documentation and guides
+we put here, the more quickly newcomers will adjust to working in GoCV.
+
+GoCV Main Page
+This site provides a guide on how to install GoCV on a Windows, macOS, or Linux device.
+It also features multiple example programs, including face detection, deep neural network
+use to track objects or faces, and motion detection. Further included is a link to its
+GoDoc, providing Go documentation on functions in GoCV.
+https://gocv.io/
+
+Go by Example
+This website goes over different aspects of programming with example code for each. One
+can follow the examples by entering them into their own computer and modifying the code,
+allowing one to get a better understanding of what these functions are doing. Relevant to
+this program, it spans basics from for loops, conditional statements, and data structures
+to deferring, goroutines, and channels.
+https://gobyexample.com/
+
+Go Documentation
+This official documentation can be used alongside Go by Example to learn about programming
+in Go. It covers much of the same content as Go by Example, but where Go by Example
+emphasizes examples, the Golang documentation provides more in-depth explanations. That's
+not to say this page includes examples as well; including both of these resources
+provides multiple means by which one can learn these materials.
+https://golang.org/doc/effective_go.html
+
+OpenCV Documentation
+This page is the nightly version of OpenCV's documentation. It describes the different
+main and additional modules in OpenCV while also providing tutorials for installing and
+working with it in C++, Python, and JavaScript. While there are not sections for working
+in Go with this, many of the functions in these modules share similarities with those in
+GoCV since the latter is based on the former. Thus, this is an ideal source to consult if
+GoCV's GoDoc seems lacking in some places.
+https://docs.opencv.org/master/
