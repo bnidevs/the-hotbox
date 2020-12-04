@@ -136,3 +136,44 @@ func main() {
 ```
 
 Recursion works just like C/C++ but with Go's conventions.
+
+## Pointers
+
+Same idea as C++ pointers - star (\*) dereferences, ampersand (&) gives memory address.
+
+## Structs
+
+Similar to C/C++, though different syntax is present. Structs can be changed.
+
+**Example**:
+```
+# Struct
+type employee struct {
+    name string
+    department int
+}
+
+# Constructor
+func newEmployee(name string) *employee {
+    e := employee{name: name}
+    e.department = 7
+    return &p
+}
+
+# How to create a new struct
+    fmt.Println(employee{"Gordon", 4}
+    fmt.Println(newEmployee("Joe"))
+
+# You can name fields while initializing a struct; if a field is not given a value,
+# it will be zero-valued
+    e := employee{name: "Bob", department: 7}
+
+# You can access struct fields with a period
+    fmt.Println(e.name)
+```
+
+## Goroutine
+
+Executes functions concurrently with calling functions
+
+`go compare(2, 2)`
