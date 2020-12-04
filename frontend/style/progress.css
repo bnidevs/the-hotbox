@@ -67,8 +67,36 @@ div:last-child{
   display: none;
 }
 
+#process-btn {
+  margin-left: 1vw;
+}
+
 #download-btn {
   display: none;
+}
+
+#upload-label {
+  margin-right: 1vw;
+}
+
+#uploadprogressbar {
+  width: 16vw;
+  height: 0.8vw;
+  margin-top: 0.2vw;
+}
+
+#uploadprogress {
+  margin-left: 1vw;
+}
+
+#processingprogressbar {
+  width: 16vw;
+  height: 0.8vw;
+  margin-top: 0.2vw;
+}
+
+#processingprogress {
+  margin-left: 1vw;
 }
 
 #themeSwitch{
@@ -95,8 +123,8 @@ div:last-child{
 
 .halloween{
   background-color: black;
-  color: #FF7000;
-  --secondary-color: "#FF7000";
+  color: #cc6600;
+  --secondary-color: #FF7000;
   background-image: url("../assets/pumpkin.png");
   background-repeat: no-repeat;
   background-position: absolute;
@@ -105,7 +133,7 @@ div:last-child{
 
 .thanksgiving{
   background-color: #261a0d;
-  color: #FAF16A;
+  color: #c65353;
   --secondary-color: #FAF16A;
   background-image: url("../assets/turkey.png");
   background-repeat: no-repeat;

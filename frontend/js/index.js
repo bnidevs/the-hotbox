@@ -56,7 +56,7 @@ function uploadVideo() {
   promise.then(
     function(data) {
       console.log("success");
-      document.getElementById("upload-label").innerText = "Upload Done";
+      document.getElementById("upload-label").innerText = "Done!";
       checkFileSize();
       getImgPreview();
       callLambdaProcess();
@@ -153,12 +153,12 @@ function toggleTheme(){
   }
   else if(themeID == 3){
     document.documentElement.className="halloween";
-    document.getElementsByTagName("h1")[0].style.color = "#FF7000";
+    document.getElementsByTagName("h1")[0].style.color = "#cc6600";
     document.getElementsByTagName("footer")[0].style.color = "#FF7000";
   }
   else if(themeID == 4){
     document.documentElement.className="thanksgiving";
-    document.getElementsByTagName("h1")[0].style.color = "#FAF16A";
+    document.getElementsByTagName("h1")[0].style.color = "#c65353";
     document.getElementsByTagName("footer")[0].style.color = "#FAF16A";
   }
   else if(themeID == 5){
@@ -181,6 +181,7 @@ function toggleTheme(){
 function checkDate(){
   var date = new Date();
   var month = date.getMonth()+1;
+  var day = date.getDay()-1;
   if(month == 10){
     document.getElementById("themeSwitch").value=3;
   }
