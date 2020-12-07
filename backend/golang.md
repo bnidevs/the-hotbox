@@ -174,6 +174,22 @@ func newEmployee(name string) *employee {
 
 ## Goroutine
 
-Executes functions concurrently with calling functions
+Executes functions concurrently with calling functions. Can perform from anonymous function calls and can be connected through channels.
 
 `go compare(2, 2)`
+
+## Channels
+
+Connects concurrent goroutines. Similar to pipes in C. Sends and receives will block until the sender and receiver are ready.
+
+```
+# Create channel
+msg := make (chan string)
+
+# Send value into channel
+go func() { msg <- "hello there}()
+
+# Receive value from channel
+out := <- msg
+fmt.Println(out)
+```
