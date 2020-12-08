@@ -56,7 +56,7 @@ function uploadVideo() {
   promise.then(
     function(data) {
       console.log("success");
-      document.getElementById("upload-label").innerText = "Upload Done";
+      document.getElementById("upload-label").innerText = "Done!";
       checkFileSize();
       getImgPreview();
       callLambdaProcess();
@@ -81,6 +81,8 @@ function checkFileSize() {
 
 function getImgPreview() {
   var paramspayload = {"videofilename":videofilename}
+
+  document.getElementById("preview-image").src="assets/no_preview.png";
 
   var lambdaParams = {
     FunctionName: '035225278288:function:thehotboximagepreview',
@@ -136,7 +138,87 @@ function setDefaults(){
 
 function toggleTheme(){
   var element = document.body;
-  element.classList.toggle("dark-mode");
+  var themeID = document.getElementById("themeSwitch").value;
+  if(themeID == 1){
+    document.documentElement.className="light-mode";
+    document.getElementsByTagName("h1")[0].style.color = "black";
+    document.getElementsByTagName("footer")[0].style.color = "black";
+    document.cookie = themeID.toString() + ";path=/";
+  }
+  else if(themeID == 2){
+    document.documentElement.className="dark-mode";
+    document.getElementsByTagName("h1")[0].style.color = "white";
+    document.getElementsByTagName("footer")[0].style.color = "white";
+    document.cookie = themeID.toString() + ";path=/";
+  }
+  else if(themeID == 3){
+    document.documentElement.className="halloween";
+    document.getElementsByTagName("h1")[0].style.color = "#cc6600";
+    document.getElementsByTagName("footer")[0].style.color = "#FF7000";
+  }
+  else if(themeID == 4){
+    document.documentElement.className="thanksgiving";
+    document.getElementsByTagName("h1")[0].style.color = "#c65353";
+    document.getElementsByTagName("footer")[0].style.color = "#FAF16A";
+  }
+  else if(themeID == 5){
+    document.documentElement.className="christmas";
+    document.getElementsByTagName("h1")[0].style.color = "#00cc00";
+    document.getElementsByTagName("footer")[0].style.color = "white";
+  }
+  else if(themeID == 6){
+    document.documentElement.className="newyears";
+    document.getElementsByTagName("h1")[0].style.color = "hotpink";
+    document.getElementsByTagName("footer")[0].style.color = "white";
+  } 
+  else if(themeID == 7){
+    document.documentElement.className="easter";
+    document.getElementsByTagName("h1")[0].style.color = "darkmagenta";
+    document.getElementsByTagName("footer")[0].style.color = "darkmagenta";
+  }
+}
+
+function checkDate(){
+  var date = new Date();
+  var month = date.getMonth()+1;
+  var day = date.getDay()-1;
+  if(month == 10){
+    document.getElementById("themeSwitch").value=3;
+  }
+  else if(month == 11){
+    document.getElementById("themeSwitch").value=4;
+  }
+  else if(month == 12 && day <= 25){
+    document.getElementById("themeSwitch").value=5;
+  }
+  else if((month == 12 && day > 25) || (month == 1 && day < 8)){
+    document.getElementById("themeSwitch").value=6;
+  }
+  else if((month == 3 && day > 21) || (month == 4 && day < 26)){
+    document.getElementById("themeSwitch").value=7;
+  }
+  else{
+  	var decoded_cookie = decodeURIComponent(document.cookie);
+  	var theme_value = decoded_cookie.substring(0,1);
+  	document.getElementById("themeSwitch").value = Number(theme_value);
+  }
+  toggleTheme();
+  setFavicon();
+}
+
+function setFavicon() {
+  var favicon_paths = ["assets/favicons/1.jpeg",
+                       "assets/favicons/2.jpeg",
+                       "assets/favicons/3.jpeg",
+                       "assets/favicons/4.jpeg",
+                       "assets/favicons/5.jpeg",
+                       "assets/favicons/6.jpeg",
+                       "assets/favicons/7.jpeg"];
+  document.getElementById("favicon").href=favicon_paths[getRandomInt(0,6)]
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 var shorten_float = (f) => {

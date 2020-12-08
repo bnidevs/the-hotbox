@@ -4,17 +4,20 @@
 <html lang="en">
 	<head>
 		<title>The Hotbox</title>
+		<link rel="shortcut icon" type="image/jpg" id="favicon"/>
 		<link rel="stylesheet" type="text/css" href="style/progress.css"></link>
 	</head>
-	<body class="column">
+	<body class="column" onload="checkDate()">
 		<h1>The Hotbox</h1>
 		<div class="row">
 			<input type="file" id="upload" accept=".mp4, .m4a">
 			<button id="upload-btn" class="button">Upload</button>
+			<button id="process-btn" class="button">Process</button>
+		</div>
 		</div>
 		<br>
 
-		<div class="row" style="width: 50vw">
+		<div class="row">
 			<div class = "column">
 				<div id="slider-container" class="column">
 					<div class="row split slider">
@@ -50,22 +53,22 @@
 		  				</div>
 					</div>
 				</div>
-				<div id="checkbox-container" class="row split checkbox">
-					<div class="row">
-						<input type="checkbox" name="option1" value="laser-eyes" id="laser-eyes">
-						<label for="option1">Laser Eyes</label><br>
-					</div>
-					<div class="row">
-						<input type="checkbox" name="option2" value="head-bulge" id="head-bulge">
-						<label for="option2">Head Bulge</label><br>
+				<div id="checkbox-container">
+					<div class="row split checkbox">
+						<div>
+							<input type="checkbox" name="option1" value="laser-eyes" id="laser-eyes">
+							<label for="option1">Laser Eyes</label><br>
+						</div>
+						<div>
+							<input type="checkbox" name="option2" value="head-bulge" id="head-bulge">
+							<label for="option2">Head Bulge</label><br>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="column">
-				<div class="row">
-					<img id="preview-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/White_flag_of_surrender.svg/320px-White_flag_of_surrender.svg.png">
-				</div>
-				<div class="row">
+				<div id="preview-wrapper">
+					<img id="preview-image" src="assets/blank_preview.png">
 					<button id="default-btn" class="button" onclick="setDefaults()">Defaults</button>
 				</div>
 			</div>
@@ -79,9 +82,9 @@
 			</div>
 
 			<div id="progress-container" class="row">
-				<label id="process-label" for="procssingprogressbar">Processing... </label>
-				<progress id="procssingprogressbar" value="0" max="100"></progress>
-				<div id="procssingprogress"></div>
+				<label id="process-label" for="processingprogressbar">Processing... </label>
+				<progress id="processingprogressbar" value="0" max="100"></progress>
+				<div id="processingprogress"></div>
 			</div>
 		</div>
 
@@ -97,8 +100,16 @@
     		<a href="https://rcos.io/">RCOS</a>
     		Project | Version:
     		<code>420.69</code>
-    		| Dark Mode
-			<input type="checkbox" id="themeSwitch" onclick="toggleTheme()">
+    		| Switch Theme
+			<select name="themetoggle" id="themeSwitch" onchange="toggleTheme()">
+				<option value="1">Light Mode</option>
+			    <option value="2">Dark Mode</option>
+				<option value="3">Halloween</option>
+				<option value="4">Thanksgiving</option>
+				<option value="5">Christmas</option>
+				<option value="6">New Years</option>
+				<option value="7">Easter</option>
+			</select>
     	</p>
     </footer>
 

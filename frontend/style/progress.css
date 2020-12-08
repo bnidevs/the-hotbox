@@ -1,38 +1,8 @@
-.column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.row {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.split {
-  justify-content: space-between;
-}
-
-.slider {
-  width: 20vw;
-}
-
-.checkbox {
-  width: 15vw;
-}
-
-#preview-image {
-  width: 12vw;
-  padding: 1vw;
-  border: 0.25vw solid gray;
-}
-
-#progress-container {
-  display: none;
-}
-
-#download-btn {
-  display: none;
+html, body {
+  height: 100%;
+  font-family: Optima, sans-serif;
+  font-style: ;
+  font-size: 1vw;
 }
 
 footer {
@@ -46,31 +16,161 @@ a {
   color: dodgerblue;
 }
 
-:root {
-    --primary-color: #000000;
-    --secondary-color: #000000;
-    --bg-color: #FFFFFF;
-}
-
-body{
-  background-color: white;
-  color: black;
-  --secondary-color: #000000;
-}
-
-.dark-mode{
-  background-color:black;
-  color:white;
-  --secondary-color: #FFFFFF;
-}
-
-#themeSwitch{
-  vertical-align: text-bottom;
-}
 div {
   margin-bottom: 20px;
 }
 
 div:last-child{
   margin-bottom: none;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 350px;
+}
+
+.row:nth-child(odd){
+  color:var(--secondary-color);
+}
+
+.split {
+  justify-content: space-between;
+}
+
+.slider {
+  width: 20vw;
+}
+
+.checkbox {
+  width: 15vw;
+  max-width: 300px;
+}
+
+#preview-wrapper {
+  margin-left: 60px;
+  text-align: center;
+}
+
+#preview-image {
+  width: 20vw;
+  border: 0.25vw solid gray;
+}
+
+#progress-container {
+  display: none;
+}
+
+#process-btn {
+  margin-left: 1vw;
+}
+
+#download-btn {
+  display: none;
+}
+
+#upload-label {
+  margin-right: 1vw;
+}
+
+#uploadprogressbar {
+  width: 16vw;
+  height: 0.8vw;
+  margin-top: 0.2vw;
+}
+
+#uploadprogress {
+  margin-left: 1vw;
+}
+
+#processingprogressbar {
+  width: 16vw;
+  height: 0.8vw;
+  margin-top: 0.2vw;
+}
+
+#processingprogress {
+  margin-left: 1vw;
+}
+
+#themeSwitch{
+  vertical-align: text-bottom;
+}
+
+:root {
+    --primary-color: #000000;
+    --secondary-color: #000000;
+    --bg-color: #FFFFFF;
+}
+
+.light-mode{
+  background-color: white;
+  color: black;
+  --secondary-color: black;
+}
+
+.dark-mode{
+  background-color:#1c1c1c;
+  color:white;
+  --secondary-color: white;
+}
+
+.halloween{
+  background-color: black;
+  color: #cc6600;
+  --secondary-color: #FF7000;
+  background-image: url("../assets/pumpkin.png");
+  background-repeat: no-repeat;
+  background-position: absolute;
+  background-position: left bottom;
+  background-size: 21vw;}
+
+.thanksgiving{
+  background-color: #261a0d;
+  color: #c65353;
+  --secondary-color: #FAF16A;
+  background-image: url("../assets/turkey.png");
+  background-repeat: no-repeat;
+  background-position: absolute;
+  background-position: right bottom;
+  background-size: 24vw;
+}
+
+.christmas{
+  background-color: #003c58;
+  color: red;
+  --secondary-color:#00cc00;
+  background-image: url("../assets/tree.png");
+  background-repeat: no-repeat;
+  background-position: absolute;
+  background-position: left bottom;
+  background-size: 24vw;
+}
+
+.newyears{
+  background-color: #00406f;
+  color: white;
+  --secondary-color: hotpink;
+  background-image: url("../assets/new_year.png");
+  background-repeat: no-repeat;
+  background-position: absolute;
+  background-position: right bottom;
+  background-size: 24vw;
+}
+
+.easter{
+  background-color: #9DCFDF;
+  color: orangered;
+  --secondary-color: darkmagenta;
+  background-image: url("../assets/easter.png");
+  background-repeat: no-repeat;
+  background-position: absolute;
+  background-position: right bottom;
+  background-size: 24vw;
 }
