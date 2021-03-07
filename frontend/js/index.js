@@ -1,3 +1,4 @@
+/*
 var bucketName = "thehotboxupload";
 var bucketRegion = 'us-east-1';
 var IdentityPoolId = 'us-east-1:2271f583-09e5-4212-b72a-4024f2cea3c5';
@@ -228,3 +229,6 @@ var shorten_float = (f) => {
 // Event Listeners
 document.getElementById("upload-btn").addEventListener("click", uploadVideo);
 window.addEventListener("beforeunload", setDefaults());
+*/
+
+// CODE IS COMMENTED OUT TO TEMPORARILY DISABLE UPLOADS
